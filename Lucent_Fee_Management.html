@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUCENT COACHING CENTRE - Fee Management</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f1f5f9;color:#172033}
+header{background:linear-gradient(135deg,#0f3d91,#2563eb);color:white;padding:22px 15px;text-align:center}
+header h1{margin:0;font-size:27px}
+header p{margin:6px 0 0;opacity:.9}
+.container{max-width:1200px;margin:20px auto;padding:0 12px}
+.dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.card{background:white;border-radius:14px;padding:17px;box-shadow:0 3px 12px #0001}
+.card small{color:#64748b}.card h2{margin:7px 0 0}
+.form-box{background:white;padding:18px;border-radius:14px;box-shadow:0 3px 12px #0001;margin-bottom:18px}
+.form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+label{font-size:13px;font-weight:bold;color:#475569}
+input,select{width:100%;padding:11px;margin-top:5px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px}
+button{border:0;border-radius:8px;padding:10px 15px;cursor:pointer;font-weight:bold}
+.btn-primary{background:#2563eb;color:white}.btn-success{background:#16a34a;color:white}
+.btn-warning{background:#f59e0b;color:white}.btn-danger{background:#dc2626;color:white}
+.btn-dark{background:#334155;color:white}
+.actions{margin-top:15px;display:flex;gap:8px;flex-wrap:wrap}
+.table-box{background:white;border-radius:14px;padding:15px;box-shadow:0 3px 12px #0001;overflow:auto}
+.topbar{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.search{max-width:350px}
+table{width:100%;border-collapse:collapse;min-width:900px}
+th,td{padding:11px 8px;border-bottom:1px solid #e2e8f0;text-align:left;font-size:13px}
+th{background:#eff6ff;color:#1e3a8a}
+.paid{color:#15803d;font-weight:bold}.due{color:#dc2626;font-weight:bold}
+.badge{padding:4px 8px;border-radius:20px;background:#dcfce7;color:#166534;font-size:11px}
+.badge-due{background:#fee2e2;color:#991b1b}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:10;align-items:center;justify-content:center;padding:15px}
+.modal-content{background:white;width:min(500px,100%);border-radius:14px;padding:20px}
+.receipt{border:2px solid #222;padding:20px;text-align:center}
+.receipt hr{border:0;border-top:1px solid #aaa}
+.receipt table{min-width:0;margin-top:12px}.receipt td{border:1px solid #aaa}
+@media(max-width:800px){.dashboard{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.dashboard{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.card h2{font-size:20px}header h1{font-size:22px}}
+@media print{
+body{background:white}.no-print{display:none!important}.modal{display:flex!important;position:static;background:white;padding:0}.modal-content{box-shadow:none;width:100%}.receipt{border:2px solid #000}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🏫 LUCENT COACHING CENTRE</h1>
+<p>Near Mithila Eye Hospital, Musrigharari</p>
+<h3 style="margin:8px 0 0">💰 FEE MANAGEMENT PORTAL</h3>
+</header>
+
+<div class="container">
+
+<div class="dashboard">
+<div class="card"><small>Total Students</small><h2 id="totalStudents">0</h2></div>
+<div class="card"><small>Total Fee</small><h2 id="totalFee">₹0</h2></div>
+<div class="card"><small>Total Collected</small><h2 id="totalPaid" class="paid">₹0</h2></div>
+<div class="card"><small>Total Due</small><h2 id="totalDue" class="due">₹0</h2></div>
+</div>
+
+<div class="form-box">
+<h3 id="formTitle">➕ Add Student Fee</h3>
+<div class="form-grid">
+<div><label>Student Name</label><input id="name" placeholder="Enter student name"></div>
+<div><label>Roll No.</label><input id="roll" placeholder="Roll number"></div>
+<div><label>Class / Section</label><input id="className" placeholder="e.g. 9th A"></div>
+<div><label>Father's Name</label><input id="father" placeholder="Father's name"></div>
+<div><label>Total Fee (₹)</label><input id="total" type="number" min="0" placeholder="0"></div>
+<div><label>Paid Fee (₹)</label><input id="paid" type="number" min="0" placeholder="0"></div>
+<div><label>Payment Date</label><input id="date" type="date"></div>
+<div><label>Payment Mode</label>
+<select id="mode"><option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Other</option></select>
+</div>
+</div>
+<div class="actions">
+<button class="btn-primary" onclick="saveStudent()">💾 Save Fee</button>
+<button class="btn-dark" onclick="clearForm()">🔄 Clear</button>
+</div>
+</div>
+
+<div class="table-box">
+<div class="topbar">
+<h3 style="margin:0">📋 Student Fee Records</h3>
+<input class="search" id="search" oninput="render()" placeholder="🔎 Search name / roll / class...">
+</div>
+<table>
+<thead>
+<tr><th>#</th><th>Student</th><th>Roll</th><th>Class</th><th>Father</th><th>Total</th><th>Paid</th><th>Due</th><th>Date</th><th>Status</th><th>Action</th></tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+</div>
+
+<div class="modal" id="receiptModal">
+<div class="modal-content">
+<div class="no-print" style="text-align:right;margin-bottom:8px">
+<button class="btn-dark" onclick="closeReceipt()">✖ Close</button>
+<button class="btn-primary" onclick="window.print()">🖨️ Print</button>
+</div>
+<div class="receipt" id="receipt"></div>
+</div>
+</div>
+
+<script>
+let students = JSON.parse(localStorage.getItem("lucentFeeData") || "[]");
+let editIndex = -1;
+
+document.getElementById("date").valueAsDate = new Date();
+
+function money(n){return "₹" + Number(n||0).toLocaleString("en-IN")}
+function saveData(){localStorage.setItem("lucentFeeData",JSON.stringify(students))}
+function val(id){return document.getElementById(id).value.trim()}
+
+function saveStudent(){
+ const name=val("name"), roll=val("roll"), cls=val("className"), father=val("father");
+ const total=Number(val("total")||0), paid=Number(val("paid")||0);
+ const date=val("date"), mode=val("mode");
+ if(!name){alert("Student Name भरना जरूरी है।");return}
+ if(paid>total){alert("Paid Fee, Total Fee से ज्यादा नहीं हो सकती।");return}
+
+ const data={name,roll,cls,father,total,paid,date,mode};
+ if(editIndex===-1) students.push(data); else students[editIndex]=data;
+ saveData(); clearForm(); render();
+ alert(editIndex===-1 ? "Fee record saved successfully!" : "Record updated successfully!");
+ editIndex=-1;
+}
+
+function clearForm(){
+ ["name","roll","className","father","total","paid"].forEach(id=>document.getElementById(id).value="");
+ document.getElementById("date").valueAsDate=new Date();
+ document.getElementById("mode").value="Cash";
+ document.getElementById("formTitle").innerText="➕ Add Student Fee";
+ editIndex=-1;
+}
+
+function editStudent(i){
+ const s=students[i]; editIndex=i;
+ document.getElementById("name").value=s.name;
+ document.getElementById("roll").value=s.roll;
+ document.getElementById("className").value=s.cls;
+ document.getElementById("father").value=s.father;
+ document.getElementById("total").value=s.total;
+ document.getElementById("paid").value=s.paid;
+ document.getElementById("date").value=s.date;
+ document.getElementById("mode").value=s.mode;
+ document.getElementById("formTitle").innerText="✏️ Edit Student Fee";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function deleteStudent(i){
+ if(confirm("क्या आप इस record को delete करना चाहते हैं?")){
+  students.splice(i,1);saveData();render();
+ }
+}
+
+function showReceipt(i){
+ const s=students[i], due=s.total-s.paid;
+ document.getElementById("receipt").innerHTML=`
+ <h2>LUCENT COACHING CENTRE</h2>
+ <p>Near Mithila Eye Hospital, Musrigharari</p>
+ <h3>FEE PAYMENT RECEIPT</h3>
+ <hr>
+ <table>
+ <tr><td><b>Student Name</b></td><td>${escapeHTML(s.name)}</td></tr>
+ <tr><td><b>Roll No.</b></td><td>${escapeHTML(s.roll)}</td></tr>
+ <tr><td><b>Class</b></td><td>${escapeHTML(s.cls)}</td></tr>
+ <tr><td><b>Father's Name</b></td><td>${escapeHTML(s.father)}</td></tr>
+ <tr><td><b>Total Fee</b></td><td>${money(s.total)}</td></tr>
+ <tr><td><b>Paid Fee</b></td><td>${money(s.paid)}</td></tr>
+ <tr><td><b>Due Fee</b></td><td>${money(due)}</td></tr>
+ <tr><td><b>Payment Date</b></td><td>${s.date||"-"}</td></tr>
+ <tr><td><b>Payment Mode</b></td><td>${escapeHTML(s.mode)}</td></tr>
+ </table>
+ <p style="margin-top:30px;text-align:right">Authorized Signature</p>`;
+ document.getElementById("receiptModal").style.display="flex";
+}
+function closeReceipt(){document.getElementById("receiptModal").style.display="none"}
+
+function escapeHTML(x){
+ return String(x??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+
+function render(){
+ const q=val("search").toLowerCase();
+ const tbody=document.getElementById("tbody");
+ tbody.innerHTML="";
+ let totalFee=0,totalPaid=0;
+ students.forEach(s=>{totalFee+=Number(s.total);totalPaid+=Number(s.paid)});
+ students.forEach((s,i)=>{
+  const text=(s.name+" "+s.roll+" "+s.cls+" "+s.father).toLowerCase();
+  if(q && !text.includes(q))return;
+  const due=Number(s.total)-Number(s.paid);
+  tbody.innerHTML+=`<tr>
+   <td>${i+1}</td><td><b>${escapeHTML(s.name)}</b></td><td>${escapeHTML(s.roll)}</td>
+   <td>${escapeHTML(s.cls)}</td><td>${escapeHTML(s.father)}</td>
+   <td>${money(s.total)}</td><td class="paid">${money(s.paid)}</td><td class="due">${money(due)}</td>
+   <td>${s.date||"-"}</td><td>${due<=0?'<span class="badge">PAID</span>':'<span class="badge badge-due">DUE</span>'}</td>
+   <td style="white-space:nowrap">
+    <button class="btn-success" onclick="showReceipt(${i})">🧾</button>
+    <button class="btn-warning" onclick="editStudent(${i})">✏️</button>
+    <button class="btn-danger" onclick="deleteStudent(${i})">🗑️</button>
+   </td>
+  </tr>`;
+ });
+ document.getElementById("totalStudents").innerText=students.length;
+ document.getElementById("totalFee").innerText=money(totalFee);
+ document.getElementById("totalPaid").innerText=money(totalPaid);
+ document.getElementById("totalDue").innerText=money(totalFee-totalPaid);
+}
+render();
+</script>
+</body>
+</html>
