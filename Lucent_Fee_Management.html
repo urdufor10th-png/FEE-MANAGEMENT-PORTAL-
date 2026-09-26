@@ -3,168 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FEE-MANAGEMENT-PORTAL - LUCENT COACHING CENTRE</title>
+  <title>फीस भुगतान रसीद पोर्टल - LUCENT COACHING CENTRE</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Roboto', sans-serif; }
-    body { background-color: #f1f5f9; color: #0f172a; padding: 25px 12px; }
+    body { background-color: #e2e8f0; color: #0f172a; padding: 25px 12px; }
 
-    .main-wrapper {
-      max-width: 900px;
+    /* MAIN RECTANGLE CARD */
+    .receipt-portal-card {
+      max-width: 680px;
       margin: 0 auto;
-    }
-
-    .portal-title-top {
-      font-size: 20px;
-      font-weight: 900;
-      color: #0f2744;
-      margin-bottom: 4px;
-      letter-spacing: 0.5px;
-    }
-    .portal-subtitle-top {
-      font-size: 13px;
-      color: #64748b;
-      margin-bottom: 12px;
-    }
-
-    .portal-card {
       background: #ffffff;
-      border: 1.5px solid #003366;
+      border: 3px solid #002244;
       border-radius: 0px;
-      padding: 24px;
-      box-shadow: 0 4px 15px rgba(0, 34, 68, 0.08);
+      box-shadow: 8px 8px 0px rgba(0, 34, 68, 0.9);
     }
 
-    .inst-header {
-      text-align: center;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 15px;
-    }
-    .inst-header h1 {
-      font-size: 24px;
-      font-weight: 900;
-      color: #002244;
-      letter-spacing: 0.5px;
-    }
-    .inst-header p {
-      font-size: 13px;
-      color: #475569;
-      font-weight: 600;
-      margin-top: 4px;
-    }
-
-    .badge-strip {
-      background: #dc2626;
+    .portal-header {
+      background: #002b49;
       color: #ffffff;
-      font-size: 12px;
-      font-weight: 800;
-      padding: 6px 14px;
-      display: inline-block;
-      margin-top: 10px;
-      letter-spacing: 0.5px;
+      padding: 16px 20px;
+      text-align: center;
+      border-bottom: 3px solid #002244;
     }
-
-    .section-title {
-      font-size: 14px;
-      font-weight: 800;
-      color: #003366;
-      border-left: 4px solid #003366;
-      padding-left: 8px;
-      margin: 20px 0 14px;
+    .portal-header h1 {
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
     }
+    .portal-header p {
+      font-size: 12.5px;
+      color: #38bdf8;
+      margin-top: 4px;
+      font-weight: 600;
+    }
 
-    .form-grid-3 {
+    .portal-body { padding: 22px; }
+
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
       margin-bottom: 14px;
     }
 
-    .form-field {
-      display: flex;
-      flex-direction: column;
-    }
-    .form-field label {
+    .form-cell { display: flex; flex-direction: column; }
+    .form-cell label {
       font-size: 12px;
-      font-weight: 700;
-      color: #334155;
+      font-weight: 800;
+      color: #1e293b;
       margin-bottom: 5px;
+      text-transform: uppercase;
     }
-    .form-field input, .form-field select {
+    .form-cell input, .form-cell select {
       width: 100%;
       padding: 10px 12px;
-      font-size: 13.5px;
-      border: 1.5px solid #cbd5e1;
+      font-size: 14px;
+      border: 2px solid #334155;
       border-radius: 0px;
-      outline: none;
       background: #ffffff;
       color: #0f172a;
+      outline: none;
       font-weight: 600;
     }
-    .form-field input:focus, .form-field select:focus {
+    .form-cell input:focus, .form-cell select:focus {
       border-color: #0284c7;
-      background: #f8fafc;
+      background: #f0f9ff;
     }
 
-    .month-dropdown-large {
+    /* LARGE MONTH SELECT */
+    .month-select-large {
+      padding: 11px 12px !important;
       font-size: 15px !important;
       font-weight: 800 !important;
       color: #003366 !important;
-      padding: 11px 12px !important;
-      border: 2px solid #003366 !important;
+      border: 2.5px solid #003366 !important;
       background: #f0fdf4 !important;
       cursor: pointer;
     }
 
     /* SUMMARY BAR */
-    .balance-bar {
+    .summary-strip {
       background: #f8fafc;
-      border: 2px solid #003366;
+      border: 2px solid #0284c7;
       border-radius: 0px;
-      padding: 14px;
-      margin: 18px 0;
+      padding: 12px 14px;
+      margin: 16px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
-    .balance-bar .math-text {
+    .summary-strip .status-title {
       font-size: 13px;
-      color: #334155;
-      font-weight: 700;
-    }
-    .balance-bar .total-box {
-      text-align: right;
-    }
-    .balance-bar .total-box span {
-      font-size: 11px;
+      color: #166534;
       font-weight: 800;
-      color: #003366;
-      display: block;
-      text-transform: uppercase;
     }
-    .balance-bar .total-box strong {
-      font-size: 24px;
-      color: #dc2626;
+    .summary-strip .paid-text {
+      font-size: 22px;
       font-weight: 900;
+      color: #15803d;
     }
 
-    /* BUTTONS ROW */
+    /* PREVIEW */
+    .preview-box {
+      background: #f8fafc;
+      border: 2px solid #94a3b8;
+      border-radius: 0px;
+      padding: 12px;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #1e293b;
+      white-space: pre-wrap;
+      margin-bottom: 18px;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    /* BUTTONS ROW (PRINT + WHATSAPP + SMS) */
     .btn-row-3 {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-      margin-top: 15px;
+      gap: 10px;
     }
 
     .action-btn {
       width: 100%;
       border-radius: 0px;
-      padding: 13px 10px;
-      font-size: 13.5px;
+      padding: 13px 8px;
+      font-size: 13px;
       font-weight: 900;
       cursor: pointer;
       text-transform: uppercase;
@@ -179,7 +154,7 @@
       background: #003366;
       color: #ffffff;
       border: 2px solid #001f3f;
-      box-shadow: 3px 3px 0px #001f3f;
+      box-shadow: 4px 4px 0px #001f3f;
     }
     .btn-print:hover { background: #002244; transform: translate(1px, 1px); }
 
@@ -187,7 +162,7 @@
       background: #16a34a;
       color: #ffffff;
       border: 2px solid #14532d;
-      box-shadow: 3px 3px 0px #14532d;
+      box-shadow: 4px 4px 0px #14532d;
     }
     .btn-whatsapp:hover { background: #15803d; transform: translate(1px, 1px); }
 
@@ -195,7 +170,7 @@
       background: #0284c7;
       color: #ffffff;
       border: 2px solid #0369a1;
-      box-shadow: 3px 3px 0px #0369a1;
+      box-shadow: 4px 4px 0px #0369a1;
     }
     .btn-sms:hover { background: #0369a1; transform: translate(1px, 1px); }
 
@@ -204,126 +179,118 @@
       box-shadow: none;
     }
 
-    /* PRINTABLE RECEIPT TEMPLATE */
-    #receiptPrintArea {
-      display: none;
-    }
+    /* ================= PRINTABLE PAPER RECEIPT ================= */
+    #receiptPrintArea { display: none; }
 
     @media print {
-      body * {
-        visibility: hidden;
-      }
-      #receiptPrintArea, #receiptPrintArea * {
-        visibility: visible;
-      }
+      body * { visibility: hidden; }
+      #receiptPrintArea, #receiptPrintArea * { visibility: visible; }
       #receiptPrintArea {
         display: block !important;
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
-        padding: 25px;
+        padding: 20px;
         background: #ffffff;
         color: #000000;
       }
       .receipt-paper {
         border: 2.5px solid #000000;
-        padding: 20px;
-        max-width: 650px;
+        padding: 18px;
+        max-width: 600px;
         margin: 0 auto;
       }
       .rcpt-head {
         text-align: center;
         border-bottom: 2px solid #000;
-        padding-bottom: 10px;
+        padding-bottom: 8px;
         margin-bottom: 12px;
       }
-      .rcpt-head h2 { font-size: 22px; text-transform: uppercase; margin-bottom: 4px; }
-      .rcpt-head p { font-size: 12px; }
+      .rcpt-head h2 { font-size: 20px; text-transform: uppercase; margin-bottom: 4px; }
+      .rcpt-head p { font-size: 11.5px; }
       .rcpt-meta {
         display: flex;
         justify-content: space-between;
-        font-size: 13px;
+        font-size: 12.5px;
         font-weight: bold;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         border-bottom: 1px dashed #000;
-        padding-bottom: 6px;
+        padding-bottom: 5px;
       }
       .rcpt-table {
         width: 100%;
         border-collapse: collapse;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
       }
       .rcpt-table th, .rcpt-table td {
         border: 1px solid #000;
         padding: 8px 10px;
-        font-size: 13px;
+        font-size: 12.5px;
         text-align: left;
       }
-      .rcpt-table th { background: #f0f0f0; }
+      .rcpt-table th { background: #f1f5f9; }
       .rcpt-footer {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        margin-top: 35px;
-        padding-top: 10px;
+        margin-top: 30px;
       }
       .rcpt-sign {
         border-top: 1.5px solid #000;
-        width: 180px;
+        width: 160px;
         text-align: center;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: bold;
       }
     }
 
-    @media (max-width: 768px) {
-      .form-grid-3, .btn-row-3 { grid-template-columns: 1fr; }
-      .balance-bar { flex-direction: column; align-items: flex-start; }
-      .balance-bar .total-box { text-align: left; }
+    @media (max-width: 650px) {
+      .grid-2, .grid-3, .btn-row-3 { grid-template-columns: 1fr; }
+      .summary-strip { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-  <div class="main-wrapper">
-    <div class="portal-title-top">FEE-MANAGEMENT-PORTAL.</div>
-    <div class="portal-subtitle-top">Lucent Coaching Centre Musrighari Fee System[span_2](start_span)[span_2](end_span)</div>
+  <div class="receipt-portal-card">
+    <div class="portal-header">
+      <h1>LUCENT COACHING CENTRE MUSRIGHARARI</h1>
+      <p>आधिकारिक छात्र फीस भुगतान रसीद सिस्टम[span_3](start_span)[span_3](end_span)</p>
+    </div>
 
-    <div class="portal-card">
-      <div class="inst-header">
-        <h1>LUCENT COACHING CENTRE</h1>
-        <p>Near Mithila Eye Hospital, Musrighari, Samastipur (Bihar) | Helpline: +91 9693345819[span_3](start_span)[span_3](end_span)</p>
-        <div class="badge-strip">✦ OFFICIAL STUDENT FEE RECEIPT &amp; MANAGEMENT ✦</div>
-      </div>
-
-      <!-- 1. STUDENT INFORMATION -->
-      <div class="section-title">1. Student Information (छात्र विवरण)</div>
-      <div class="form-grid-3">
-        <div class="form-field">
-          <label>छात्र चुनें (Dropdown List) *</label>
+    <div class="portal-body">
+      <!-- 1. Student Selection -->
+      <div class="grid-2">
+        <div class="form-cell">
+          <label>छात्र का नाम चुनें (Dropdown) *</label>
           <select id="studentSelect" onchange="onStudentSelectChange()">
-            <option value="">-- छात्र का नाम चुनें --</option>
+            <option value="">-- छात्र चुनें --</option>
           </select>
         </div>
-        <div class="form-field">
-          <label>Student Full Name (छात्र का नाम) *</label>
-          <input type="text" id="studentName" placeholder="उदा. Rahul Kumar" oninput="calculateTotal()">
-        </div>
-        <div class="form-field">
-          <label>Parents Mobile Number (WhatsApp/SMS) *</label>
-          <input type="tel" id="parentPhone" placeholder="10 digit number">
+        <div class="form-cell">
+          <label>Student Name (एडिट योग्य):</label>
+          <input type="text" id="studentName" placeholder="छात्र का नाम" oninput="updateReceiptData()">
         </div>
       </div>
 
-      <div class="form-grid-3">
-        <div class="form-field">
-          <label>Class / Batch *</label>
-          <input type="text" id="studentClass" value="12th" oninput="calculateTotal()">
+      <!-- 2. Phone & Class -->
+      <div class="grid-2">
+        <div class="form-cell">
+          <label>Parents Mobile Number *</label>
+          <input type="tel" id="parentPhone" placeholder="10 अंकों का मोबाइल नंबर">
         </div>
-        <div class="form-field">
-          <label>Fee Month (फीस का महीना चुनें) *</label>
-          <select id="feeMonth" class="month-dropdown-large" onchange="calculateTotal()">
+        <div class="form-cell">
+          <label>Class / Course *</label>
+          <input type="text" id="studentClass" value="12th" oninput="updateReceiptData()">
+        </div>
+      </div>
+
+      <!-- 3. Month & Date Picker -->
+      <div class="grid-2">
+        <div class="form-cell">
+          <label>Fee Month (महीना चुनें) *</label>
+          <select id="feeMonth" class="month-select-large" onchange="updateReceiptData()">
             <option value="January 2026">January 2026</option>
             <option value="February 2026">February 2026</option>
             <option value="March 2026">March 2026</option>
@@ -338,82 +305,70 @@
             <option value="December 2026">December 2026</option>
           </select>
         </div>
-        <!-- CALENDAR DATE PICKER -->
-        <div class="form-field">
-          <label>Payment Date (भुगतान तारीख चुनें) *</label>
-          <input type="date" id="paymentDate" onchange="calculateTotal()">
+        <div class="form-cell">
+          <label>Payment Date (कैलेंडर से तारीख चुनें) *</label>
+          <input type="date" id="paymentDate" onchange="updateReceiptData()">
         </div>
       </div>
 
-      <!-- 2. FEE PAYMENT & RECEIPT DETAILS -->
-      <div class="section-title">2. Fee Details &amp; Payment (जमा व रसीद विवरण)</div>
-      <div class="form-grid-3">
-        <div class="form-field">
-          <label>Previous Due (पिछला बकाया ₹)</label>
-          <input type="number" id="prevDues" value="0" min="0" oninput="calculateTotal()">
+      <!-- 4. Payment Amount & Mode -->
+      <div class="grid-3">
+        <div class="form-cell">
+          <label>प्राप्त राशि (Amount Paid ₹) *</label>
+          <input type="number" id="paidAmount" value="450" min="0" oninput="updateReceiptData()">
         </div>
-        <div class="form-field">
-          <label>Current Month Fee (चालू शुल्क ₹) *</label>
-          <input type="number" id="currFee" value="450" min="0" oninput="calculateTotal()">
-        </div>
-        <div class="form-field">
-          <label>Amount Paid Now (जमा की गई राशि ₹) *</label>
-          <input type="number" id="paidAmount" value="450" min="0" oninput="calculateTotal()">
-        </div>
-      </div>
-
-      <div class="form-grid-3">
-        <div class="form-field">
-          <label>Payment Mode (भुगतान माध्यम) *</label>
-          <select id="payMode" onchange="calculateTotal()">
+        <div class="form-cell">
+          <label>भुगतान माध्यम (Mode) *</label>
+          <select id="payMode" onchange="updateReceiptData()">
             <option value="Cash (नकद)">Cash (नकद)</option>
             <option value="PhonePe / UPI">PhonePe / UPI[span_4](start_span)[span_4](end_span)</option>
-            <option value="Online Transfer">Online Transfer</option>
+            <option value="Online Banking">Online Banking</option>
           </select>
         </div>
-        <div class="form-field" style="grid-column: span 2;">
-          <label>Receipt Remarks / Note (रसीद रिमार्क)</label>
-          <input type="text" id="receiptNote" value="फीस सफलतापूर्वक प्राप्त हुई।" oninput="calculateTotal()">
+        <div class="form-cell">
+          <label>शेष बकाया (Balance Due ₹):</label>
+          <input type="number" id="balanceDue" value="0" min="0" oninput="updateReceiptData()">
         </div>
       </div>
 
-      <!-- Balance Summary Box -->
-      <div class="balance-bar">
-        <div class="math-text" id="mathBreakdown">
-          कुल शुल्क: ₹450 | जमा: ₹450 | शेष बकाया: ₹0
-        </div>
-        <div class="total-box">
-          <span>Remaining Balance (शेष बकाया)</span>
-          <strong id="balanceDisplay">₹ 0</strong>
-        </div>
+      <!-- Summary Strip -->
+      <div class="summary-strip">
+        <div class="status-title">✅ फीस सफलतापूर्वक प्राप्त स्थिति:</div>
+        <div class="paid-text" id="paidTextDisplay">₹ 450 (Paid)</div>
       </div>
 
-      <!-- ACTION BUTTONS: PRINT + WHATSAPP + NORMAL SMS -->
+      <!-- Message Preview -->
+      <label style="font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 4px; display: block;">
+        रसीद मेसेज प्रीव्यू (यही WhatsApp/SMS पर जाएगा):
+      </label>
+      <div class="preview-box" id="messagePreview"></div>
+
+      <!-- Actions -->
       <div class="btn-row-3">
-        <button type="button" class="action-btn btn-print" onclick="printReceipt()">
-          <span>🖨️</span> रसीद प्रिंट / PDF
+        <button type="button" class="action-btn btn-print" onclick="printPaperReceipt()">
+          <span>🖨️</span> रसीद प्रिंट / PDF[span_5](start_span)[span_5](end_span)
         </button>
-        <button type="button" class="action-btn btn-whatsapp" onclick="sendPaidReceipt('whatsapp')">
-          <span>💬</span> WhatsApp रसीद भेजें
+        <button type="button" class="action-btn btn-whatsapp" onclick="sendReceiptMessage('whatsapp')">
+          <span>💬</span> WhatsApp रसीद[span_6](start_span)[span_6](end_span)
         </button>
-        <button type="button" class="action-btn btn-sms" onclick="sendPaidReceipt('sms')">
-          <span>✉️</span> Normal SMS रसीद भेजें
+        <button type="button" class="action-btn btn-sms" onclick="sendReceiptMessage('sms')">
+          <span>✉️</span> SMS रसीद[span_7](start_span)[span_7](end_span)
         </button>
       </div>
     </div>
   </div>
 
-  <!-- HIDDEN PRINTABLE RECEIPT TEMPLATE -->
+  <!-- PRINTABLE PAPER RECEIPT -->
   <div id="receiptPrintArea">
     <div class="receipt-paper">
       <div class="rcpt-head">
         <h2>LUCENT COACHING CENTRE</h2>
-        <p>Near Mithila Eye Hospital, Musrighari, Samastipur (Bihar) | Ph: +91 9693345819[span_5](start_span)[span_5](end_span)</p>
-        <div style="font-weight: bold; margin-top: 5px; font-size: 13px;">★ OFFICIAL FEE PAYMENT RECEIPT ★</div>
+        <p>Near Mithila Eye Hospital, Musrighari, Samastipur (Bihar) | Ph: +91 9693345819[span_8](start_span)[span_8](end_span)</p>
+        <div style="font-weight: bold; margin-top: 5px; font-size: 13px;">★ OFFICIAL FEE PAYMENT RECEIPT ★[span_9](start_span)[span_9](end_span)</div>
       </div>
 
       <div class="rcpt-meta">
-        <div>रसीद सं. (Receipt No): <span id="rcptNo">LCC-1021</span></div>
+        <div>रसीद सं. (Receipt No): <span id="rcptNo">LCC-7412</span></div>
         <div>भुगतान दिनांक (Date): <span id="rcptDate">26/09/2026</span></div>
       </div>
 
@@ -434,45 +389,33 @@
           <th>फीस का महीना:</th>
           <td id="rcptMonth">September 2026</td>
         </tr>
-        <tr>
-          <th>पिछला बकाया (Previous Due):</th>
-          <td id="rcptPrevDue">₹0</td>
-        </tr>
-        <tr>
-          <th>चालू माह शुल्क (Monthly Fee):</th>
-          <td id="rcptMonthFee">₹450</td>
-        </tr>
-        <tr style="background: #f9f9f9; font-weight: bold;">
+        <tr style="background: #f1f5f9; font-weight: bold;">
           <th>जमा की गई राशि (Amount Paid):</th>
-          <td id="rcptPaid" style="font-size: 15px; color: #000;">₹450</td>
+          <td id="rcptPaid" style="font-size: 14px;">₹450</td>
         </tr>
         <tr>
           <th>भुगतान माध्यम (Payment Mode):</th>
           <td id="rcptMode">Cash (नकद)</td>
         </tr>
         <tr>
-          <th>शेष बकाया (Remaining Balance):</th>
-          <td id="rcptBal" style="font-weight: bold;">₹0</td>
+          <th>शेष बकाया (Balance Due):</th>
+          <td id="rcptBal">₹0</td>
         </tr>
       </table>
 
-      <div style="font-size: 11px; margin-top: 5px;">
-        * नोट: यह एक कम्प्यूटरीकृत रसीद है। फीस जमा करने के लिए धन्यवाद।
+      <div style="font-size: 11px; margin-top: 6px;">
+        * नोट: यह आधिकारिक कम्प्यूटरीकृत रसीद है। फीस जमा करने के लिए धन्यवाद।
       </div>
 
       <div class="rcpt-footer">
-        <div style="font-size: 11px;">
-          Verified by: Lucent Office
-        </div>
-        <div class="rcpt-sign">
-          हस्ताक्षर / प्राधिकृत मुहर
-        </div>
+        <div style="font-size: 11px;">Verified by: Lucent Office</div>
+        <div class="rcpt-sign">हस्ताक्षर / मुहर</div>
       </div>
     </div>
   </div>
 
   <script>
-    // OkCredit Student Data[span_6](start_span)[span_6](end_span)
+    // OkCredit Student Data List[span_10](start_span)[span_10](end_span)
     const studentsData = [
       { name: "AMJAD ALAM", phone: "9955684664" },
       { name: "ANAMIKA KRI", phone: "7257054499" },
@@ -543,8 +486,8 @@
     function getFormattedSelectedDate() {
       const val = document.getElementById('paymentDate').value;
       if (!val) return "";
-      const parts = val.split('-');
-      return `${parts[2]}/${parts[1]}/${parts[0]}`;
+      const p = val.split('-');
+      return `${p[2]}/${p[1]}/${p[0]}`;
     }
 
     function populateDropdown() {
@@ -564,69 +507,74 @@
         const student = studentsData[val];
         document.getElementById('studentName').value = student.name;
         document.getElementById('parentPhone').value = student.phone || "";
-        document.getElementById('prevDues').value = 0;
         document.getElementById('paidAmount').value = 450;
+        document.getElementById('balanceDue').value = 0;
       }
-      calculateTotal();
+      updateReceiptData();
     }
 
-    function calculateTotal() {
-      const prev = parseFloat(document.getElementById('prevDues').value) || 0;
-      const curr = parseFloat(document.getElementById('currFee').value) || 0;
-      const paid = parseFloat(document.getElementById('paidAmount').value) || 0;
-
-      const totalFee = prev + curr;
-      let remaining = totalFee - paid;
-      if (remaining < 0) remaining = 0;
-
-      document.getElementById('mathBreakdown').innerText = 
-        `कुल शुल्क: ₹${totalFee} (बकाया ₹${prev} + चालू ₹${curr}) | जमा: ₹${paid} | शेष: ₹${remaining}`;
-      document.getElementById('balanceDisplay').innerText = `₹ ${remaining}`;
-
-      return { totalFee, paid, remaining, prev, curr };
-    }
-
-    // PRINT RECEIPT FUNCTION
-    function printReceipt() {
-      const name = document.getElementById('studentName').value.trim();
-      const phone = document.getElementById('parentPhone').value.trim();
-      const sClass = document.getElementById('studentClass').value.trim();
+    function updateReceiptData() {
+      const name = document.getElementById('studentName').value.trim() || "[विद्यार्थी का नाम]";
+      const sClass = document.getElementById('studentClass').value.trim() || "12th";
       const month = document.getElementById('feeMonth').value;
-      const mode = document.getElementById('payMode').value;
-      const calc = calculateTotal();
       const pDate = getFormattedSelectedDate();
+      const paid = parseFloat(document.getElementById('paidAmount').value) || 0;
+      const bal = parseFloat(document.getElementById('balanceDue').value) || 0;
+      const mode = document.getElementById('payMode').value;
 
-      if (!name) {
+      document.getElementById('paidTextDisplay').innerText = `₹ ${paid} (Paid)`;
+
+      const msg = 
+`*फीस भुगतान पावती (FEE RECEIPT)* 🧾[span_11](start_span)[span_11](end_span)
+*संस्थान:* LUCENT COACHING CENTRE MUSRIGHARARI[span_12](start_span)[span_12](end_span)
+
+सादर प्रणाम, आपके बच्चे की मासिक फीस सफलतापूर्वक प्राप्त हो गई है।
+
+▫️ विद्यार्थी का नाम: *${name}*
+▫️ कक्षा (Class): *${sClass}*
+▫️ फीस का माह: *${month}*
+▫️ भुगतान दिनांक: *${pDate}*
+▫️ भुगतान माध्यम: *${mode}*
+--------------------------------
+*प्राप्त राशि (Paid): ₹${paid}*
+▫️ शेष बकाया राशि: *₹${bal}*
+--------------------------------
+
+धन्यवाद,
+*LUCENT COACHING CENTRE*
+हेल्पलाइन: +91 9693345819[span_13](start_span)[span_13](end_span)`;
+
+      document.getElementById('messagePreview').innerText = msg;
+      return { name, sClass, month, pDate, paid, bal, mode, msg };
+    }
+
+    // PRINT RECEIPT[span_14](start_span)[span_14](end_span)
+    function printPaperReceipt() {
+      const data = updateReceiptData();
+      if (!document.getElementById('studentName').value.trim()) {
         alert("कृपया पहले छात्र का नाम चुनें!");
         return;
       }
 
       document.getElementById('rcptNo').innerText = 'LCC-' + Math.floor(1000 + Math.random() * 9000);
-      document.getElementById('rcptDate').innerText = pDate;
-      document.getElementById('rcptStudentName').innerText = name;
-      document.getElementById('rcptClass').innerText = sClass;
-      document.getElementById('rcptPhone').innerText = phone || 'N/A';
-      document.getElementById('rcptMonth').innerText = month;
-      document.getElementById('rcptPrevDue').innerText = `₹${calc.prev}`;
-      document.getElementById('rcptMonthFee').innerText = `₹${calc.curr}`;
-      document.getElementById('rcptPaid').innerText = `₹${calc.paid}`;
-      document.getElementById('rcptMode').innerText = mode;
-      document.getElementById('rcptBal').innerText = `₹${calc.remaining}`;
+      document.getElementById('rcptDate').innerText = data.pDate;
+      document.getElementById('rcptStudentName').innerText = data.name;
+      document.getElementById('rcptClass').innerText = data.sClass;
+      document.getElementById('rcptPhone').innerText = document.getElementById('parentPhone').value.trim() || 'N/A';
+      document.getElementById('rcptMonth').innerText = data.month;
+      document.getElementById('rcptPaid').innerText = `₹${data.paid}`;
+      document.getElementById('rcptMode').innerText = data.mode;
+      document.getElementById('rcptBal').innerText = `₹${data.bal}`;
 
       window.print();
     }
 
-    // SEND PAID RECEIPT VIA WHATSAPP OR SMS
-    function sendPaidReceipt(channel) {
-      const name = document.getElementById('studentName').value.trim();
+    // SEND RECEIPT VIA WHATSAPP OR SMS[span_15](start_span)[span_15](end_span)
+    function sendReceiptMessage(type) {
+      const data = updateReceiptData();
       let phone = document.getElementById('parentPhone').value.trim();
-      const sClass = document.getElementById('studentClass').value.trim();
-      const month = document.getElementById('feeMonth').value;
-      const mode = document.getElementById('payMode').value;
-      const calc = calculateTotal();
-      const pDate = getFormattedSelectedDate();
 
-      if (!name) {
+      if (!document.getElementById('studentName').value.trim()) {
         alert("कृपया पहले छात्र का नाम चुनें!");
         return;
       }
@@ -637,54 +585,32 @@
 
       let cleanPhone = phone.replace(/[^0-9]/g, '');
 
-      if (channel === 'whatsapp') {
+      if (type === 'whatsapp') {
         let waNumber = cleanPhone;
         if (waNumber.length === 10) {
           waNumber = '91' + waNumber;
         }
-
-        const receiptMsg = 
-`*फीस भुगतान पावती (FEE RECEIPT)* 🧾
-*संस्थान:* LUCENT COACHING CENTRE MUSRIGHARARI[span_7](start_span)[span_7](end_span)
-
-सादर प्रणाम, आपके बच्चे की मासिक फीस सफलतापूर्वक प्राप्त हो गई है।
-
-▫️ विद्यार्थी का नाम: *${name}*
-▫️ कक्षा (Class): *${sClass}*
-▫️ फीस का माह: *${month}*
-▫️ भुगतान दिनांक: *${pDate}*
-▫️ भुगतान माध्यम: *${mode}*
---------------------------------
-*प्राप्त राशि (Paid): ₹${calc.paid}*
-▫️ शेष बकाया राशि: *₹${calc.remaining}*
---------------------------------
-
-धन्यवाद,
-*LUCENT COACHING CENTRE*
-हेल्पलाइन: +91 9693345819[span_8](start_span)[span_8](end_span)`;
-
-        const waURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(receiptMsg)}`;
-        window.open(waURL, '_blank');
-
-      } else if (channel === 'sms') {
+        const waURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(data.msg)}`;
+        window.open(waURL, '_blank');[span_16](start_span)[span_16](end_span)
+      } else if (type === 'sms') {
         const plainMsg = 
 `फीस पावती (LUCENT COACHING CENTRE):
-विद्यार्थी: ${name} (${sClass})
-माह: ${month}
-दिनांक: ${pDate}
-प्राप्त राशि: Rs.${calc.paid} (${mode})
-शेष बकाया: Rs.${calc.remaining}
-फीस जमा करने हेतु धन्यवाद[span_9](start_span)[span_9](end_span)!`;
+छात्र: ${data.name} (${data.sClass})
+माह: ${data.month}
+दिनांक: ${data.pDate}
+प्राप्त राशि: Rs.${data.paid} (${data.mode})
+शेष बकाया: Rs.${data.bal}
+फीस जमा करने हेतु धन्यवाद[span_17](start_span)[span_17](end_span)!`;
 
         const smsURL = `sms:${cleanPhone}?body=${encodeURIComponent(plainMsg)}`;
-        window.location.href = smsURL;
+        window.location.href = smsURL;[span_18](start_span)[span_18](end_span)
       }
     }
 
     window.onload = function() {
       setDefaultDate();
       populateDropdown();
-      calculateTotal();
+      updateReceiptData();
     };
   </script>
 </body>
