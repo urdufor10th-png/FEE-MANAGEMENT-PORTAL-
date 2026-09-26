@@ -11,46 +11,66 @@
 
     /* RECTANGLE CONTAINER */
     .receipt-portal-card {
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto;
       background: #ffffff;
-      border: 3px solid #002244;
+      border: 3px solid #000000;
       border-radius: 0px;
-      box-shadow: 8px 8px 0px rgba(0, 34, 68, 0.9);
+      box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.85);
     }
 
-    /* HIGHLIGHTED COACHING HEADER */
+    /* HEADER SECTION */
     .portal-header {
-      background: linear-gradient(180deg, #001f3f 0%, #002b49 100%);
-      color: #ffffff;
-      padding: 22px 20px;
+      background: #ffffff;
+      color: #000000;
+      padding: 24px 20px 18px;
       text-align: center;
-      border-bottom: 3.5px solid #d97706; /* Golden Yellow Divider */
+      border-bottom: 3px solid #000000;
     }
+
+    /* 36PX TIMES NEW ROMAN BLACK BOLD TITLE */
     .portal-header h1 {
-      font-size: 23px;
-      font-weight: 900;
+      font-family: 'Times New Roman', Times, serif !important;
+      font-size: 36px !important;
+      font-weight: 900 !important;
+      color: #000000 !important;
       letter-spacing: 1px;
-      color: #fef08a; /* Golden Highlight */
-      text-shadow: 1px 2px 4px rgba(0,0,0,0.6);
+      line-height: 1.15;
       text-transform: uppercase;
       margin-bottom: 6px;
     }
+
     .portal-header .inst-address {
-      font-size: 13px;
-      color: #e2e8f0;
-      font-weight: 500;
-      line-height: 1.4;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
     }
+
     .portal-header .inst-contact {
-      display: inline-block;
-      margin-top: 6px;
-      background: #0284c7;
-      color: #ffffff;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .leadership-strip {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .leader-badge {
+      background: #f1f5f9;
+      border: 1.5px solid #0f172a;
+      padding: 4px 12px;
       font-size: 12px;
       font-weight: 800;
-      padding: 3px 12px;
-      border-radius: 2px;
+      color: #0f172a;
+      text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
@@ -93,21 +113,20 @@
       background: #f0f9ff;
     }
 
-    /* LARGE MONTH SELECT */
     .month-select-large {
       padding: 11px 12px !important;
       font-size: 15px !important;
       font-weight: 800 !important;
-      color: #003366 !important;
-      border: 2.5px solid #003366 !important;
-      background: #f0fdf4 !important;
+      color: #000000 !important;
+      border: 2px solid #000000 !important;
+      background: #f8fafc !important;
       cursor: pointer;
     }
 
     /* SUMMARY BAR */
     .summary-strip {
       background: #f8fafc;
-      border: 2px solid #0284c7;
+      border: 2px solid #000000;
       border-radius: 0px;
       padding: 12px 14px;
       margin: 16px 0;
@@ -118,8 +137,8 @@
       gap: 8px;
     }
     .summary-strip .status-title {
-      font-size: 13px;
-      color: #166534;
+      font-size: 13.5px;
+      color: #15803d;
       font-weight: 800;
     }
     .summary-strip .paid-text {
@@ -143,7 +162,7 @@
       overflow-y: auto;
     }
 
-    /* BUTTONS ROW (PRINT + WHATSAPP + SMS) */
+    /* ACTION BUTTONS */
     .btn-row-3 {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -166,12 +185,12 @@
     }
 
     .btn-print {
-      background: #003366;
+      background: #0f172a;
       color: #ffffff;
-      border: 2px solid #001f3f;
-      box-shadow: 4px 4px 0px #001f3f;
+      border: 2px solid #000000;
+      box-shadow: 4px 4px 0px #000000;
     }
-    .btn-print:hover { background: #002244; transform: translate(1px, 1px); }
+    .btn-print:hover { background: #1e293b; transform: translate(1px, 1px); }
 
     .btn-whatsapp {
       background: #16a34a;
@@ -213,25 +232,43 @@
       .receipt-paper {
         border: 2.5px solid #000000;
         padding: 20px;
-        max-width: 600px;
+        max-width: 620px;
         margin: 0 auto;
       }
       .rcpt-head {
         text-align: center;
-        border-bottom: 2px solid #000;
+        border-bottom: 2px solid #000000;
         padding-bottom: 10px;
         margin-bottom: 12px;
       }
-      .rcpt-head h2 { font-size: 22px; text-transform: uppercase; margin-bottom: 4px; font-weight: 900; }
-      .rcpt-head p { font-size: 12px; line-height: 1.4; }
+      .rcpt-head h2 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        font-weight: 900;
+        color: #000000;
+      }
+      .rcpt-head p {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+      .rcpt-leaders {
+        font-size: 11px;
+        font-weight: bold;
+        margin-top: 5px;
+        text-transform: uppercase;
+      }
       .rcpt-meta {
         display: flex;
         justify-content: space-between;
-        font-size: 12.5px;
+        font-size: 13px;
         font-weight: bold;
         margin-bottom: 12px;
-        border-bottom: 1px dashed #000;
-        padding-bottom: 5px;
+        border-bottom: 1px dashed #000000;
+        padding-bottom: 6px;
       }
       .rcpt-table {
         width: 100%;
@@ -239,12 +276,12 @@
         margin-bottom: 12px;
       }
       .rcpt-table th, .rcpt-table td {
-        border: 1px solid #000;
+        border: 1px solid #000000;
         padding: 8px 10px;
         font-size: 13px;
         text-align: left;
       }
-      .rcpt-table th { background: #f1f5f9; width: 38%; }
+      .rcpt-table th { background: #f8fafc; width: 40%; }
       .rcpt-footer {
         display: flex;
         justify-content: space-between;
@@ -252,7 +289,7 @@
         margin-top: 35px;
       }
       .rcpt-sign {
-        border-top: 1.5px solid #000;
+        border-top: 1.5px solid #000000;
         width: 170px;
         text-align: center;
         font-size: 11.5px;
@@ -261,6 +298,7 @@
     }
 
     @media (max-width: 650px) {
+      .portal-header h1 { font-size: 28px !important; }
       .grid-2, .grid-3, .btn-row-3 { grid-template-columns: 1fr; }
       .summary-strip { flex-direction: column; align-items: flex-start; }
     }
@@ -269,14 +307,18 @@
 <body>
 
   <div class="receipt-portal-card">
-    <!-- HIGHLIGHTED HEADER WITH PROPER ADDRESS & CONTACT -->
+    <!-- HIGHLIGHTED HEADER -->
     <div class="portal-header">
       <h1>LUCENT COACHING CENTRE</h1>
       <div class="inst-address">
-        📍 <strong>पता:</strong> नियर मिथिला आई हॉस्पिटल, मुसरीघरारी, समस्तीपुर (बिहार) - 848211[span_2](start_span)[span_2](end_span)
+        Near Mithila Eye Hospital, Musrigharari, Samastipur (Bihar) - 848211[span_4](start_span)[span_4](end_span)
       </div>
       <div class="inst-contact">
-        📞 हेल्पलाइन / संपर्क: +91 8789524958[span_3](start_span)[span_3](end_span)
+        Contact / Helpline: <strong>+91 8789524958</strong>[span_5](start_span)[span_5](end_span)
+      </div>
+      <div class="leadership-strip">
+        <div class="leader-badge">Director: <strong>Md Mahfooz Alam</strong>[span_6](start_span)[span_6](end_span)</div>
+        <div class="leader-badge">Managing Director: <strong>Md Nazir</strong></div>
       </div>
     </div>
 
@@ -284,21 +326,21 @@
       <!-- 1. Student Selection -->
       <div class="grid-2">
         <div class="form-cell">
-          <label>छात्र का नाम चुनें (Dropdown) *</label>
+          <label>छात्र चुनें (Student Dropdown) *</label>
           <select id="studentSelect" onchange="onStudentSelectChange()">
-            <option value="">-- छात्र चुनें --</option>
+            <option value="">-- छात्र का नाम चुनें --</option>
           </select>
         </div>
         <div class="form-cell">
-          <label>Student Name (एडिट योग्य):</label>
-          <input type="text" id="studentName" placeholder="छात्र का नाम" oninput="updateReceiptData()">
+          <label>Student Full Name:</label>
+          <input type="text" id="studentName" placeholder="उदा. Rahul Kumar" oninput="updateReceiptData()">
         </div>
       </div>
 
       <!-- 2. Phone & Class -->
       <div class="grid-2">
         <div class="form-cell">
-          <label>अभिभावक का मोबाइल नंबर *</label>
+          <label>Parents Mobile Number *</label>
           <input type="tel" id="parentPhone" placeholder="10 अंकों का मोबाइल नंबर">
         </div>
         <div class="form-cell">
@@ -327,26 +369,26 @@
           </select>
         </div>
         <div class="form-cell">
-          <label>Payment Date (कैलेंडर से तारीख चुनें) *</label>
+          <label>Payment Date (तारीख चुनें) *</label>
           <input type="date" id="paymentDate" onchange="updateReceiptData()">
         </div>
       </div>
 
-      <!-- 4. Payment Amount & Simplified Mode (Online / Cash) -->
+      <!-- 4. Amount, Fixed Mode (Cash/Online) & Balance -->
       <div class="grid-3">
         <div class="form-cell">
-          <label>प्राप्त राशि (Paid Amount ₹) *</label>
+          <label>Paid Amount (जमा राशि ₹) *</label>
           <input type="number" id="paidAmount" value="450" min="0" oninput="updateReceiptData()">
         </div>
         <div class="form-cell">
-          <label>भुगतान माध्यम (Mode) *</label>
+          <label>Payment Method *</label>
           <select id="payMode" onchange="updateReceiptData()">
-            <option value="Cash (नकद)">Cash (नकद)</option>
-            <option value="Online (PhonePe/UPI)">Online (PhonePe/UPI)[span_4](start_span)[span_4](end_span)</option>
+            <option value="Cash">Cash (नकद)</option>
+            <option value="Online">Online (PhonePe/UPI)</option>
           </select>
         </div>
         <div class="form-cell">
-          <label>शेष बकाया (Balance Due ₹):</label>
+          <label>Balance Due (बकाया राशि ₹):</label>
           <input type="number" id="balanceDue" value="0" min="0" oninput="updateReceiptData()">
         </div>
       </div>
@@ -359,20 +401,20 @@
 
       <!-- Message Preview -->
       <label style="font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 4px; display: block;">
-        रसीद मेसेज प्रीव्यू (यही WhatsApp/SMS पर जाएगा):
+        लाइव रसीद मेसेज प्रीव्यू:
       </label>
       <div class="preview-box" id="messagePreview"></div>
 
       <!-- Actions -->
       <div class="btn-row-3">
         <button type="button" class="action-btn btn-print" onclick="printPaperReceipt()">
-          <span>🖨️</span> रसीद प्रिंट / PDF[span_5](start_span)[span_5](end_span)
+          <span>🖨️</span> रसीद प्रिंट / PDF[span_7](start_span)[span_7](end_span)
         </button>
         <button type="button" class="action-btn btn-whatsapp" onclick="sendReceiptMessage('whatsapp')">
-          <span>💬</span> WhatsApp रसीद[span_6](start_span)[span_6](end_span)
+          <span>💬</span> WhatsApp रसीद[span_8](start_span)[span_8](end_span)
         </button>
         <button type="button" class="action-btn btn-sms" onclick="sendReceiptMessage('sms')">
-          <span>✉️</span> SMS रसीद[span_7](start_span)[span_7](end_span)
+          <span>✉️</span> SMS रसीद[span_9](start_span)[span_9](end_span)
         </button>
       </div>
     </div>
@@ -383,12 +425,13 @@
     <div class="receipt-paper">
       <div class="rcpt-head">
         <h2>LUCENT COACHING CENTRE</h2>
-        <p>
-          नियर मिथिला आई हॉस्पिटल, मुसरीघरारी, समस्तीपुर (बिहार) - 848211[span_8](start_span)[span_8](end_span)<br>
-          संपर्क / हेल्पलाइन: <strong>+91 8789524958</strong>[span_9](start_span)[span_9](end_span)
-        </p>
+        <p>Near Mithila Eye Hospital, Musrigharari, Samastipur (Bihar)[span_10](start_span)[span_10](end_span)</p>
+        <p>Contact / Helpline: <strong>+91 8789524958</strong>[span_11](start_span)[span_11](end_span)</p>
+        <div class="rcpt-leaders">
+          Director: <strong>Md Mahfooz Alam</strong> | Managing Director: <strong>Md Nazir</strong>[span_12](start_span)[span_12](end_span)
+        </div>
         <div style="font-weight: bold; margin-top: 6px; font-size: 13px; text-transform: uppercase;">
-          ★ आधिकारिक फीस भुगतान पावती (Fee Receipt) ★[span_10](start_span)[span_10](end_span)
+          ★ आधिकारिक फीस भुगतान पावती (Fee Receipt) ★[span_13](start_span)[span_13](end_span)
         </div>
       </div>
 
@@ -414,13 +457,13 @@
           <th>फीस का महीना:</th>
           <td id="rcptMonth">September 2026</td>
         </tr>
-        <tr style="background: #f1f5f9; font-weight: bold;">
+        <tr style="background: #f8fafc; font-weight: bold;">
           <th>जमा की गई राशि (Amount Paid):</th>
           <td id="rcptPaid" style="font-size: 15px;">₹450</td>
         </tr>
         <tr>
-          <th>भुगतान माध्यम (Payment Mode):</th>
-          <td id="rcptMode">Cash (नकद)</td>
+          <th>भुगतान माध्यम (Payment Method):</th>
+          <td id="rcptMode">Cash</td>
         </tr>
         <tr>
           <th>शेष बकाया (Balance Due):</th>
@@ -429,18 +472,18 @@
       </table>
 
       <div style="font-size: 11px; margin-top: 6px; color: #333;">
-        * नोट: यह आधिकारिक कम्प्यूटरीकृत रसीद है। फीस जमा करने के लिए धन्यवाद।
+        * नोट: यह एक आधिकारिक कम्प्यूटरीकृत रसीद है। फीस जमा करने के लिए धन्यवाद।
       </div>
 
       <div class="rcpt-footer">
         <div style="font-size: 11px;">Verified by: Lucent Office</div>
-        <div class="rcpt-sign">हस्ताक्षर / प्राधिकृत मुहर</div>
+        <div class="rcpt-sign">प्राधिकृत हस्ताक्षर / मुहर</div>
       </div>
     </div>
   </div>
 
   <script>
-    // OkCredit Student Data List[span_11](start_span)[span_11](end_span)
+    // OkCredit Student Data List[span_14](start_span)[span_14](end_span)
     const studentsData = [
       { name: "AMJAD ALAM", phone: "9955684664" },
       { name: "ANAMIKA KRI", phone: "7257054499" },
@@ -547,13 +590,14 @@
       const bal = parseFloat(document.getElementById('balanceDue').value) || 0;
       const mode = document.getElementById('payMode').value;
 
-      document.getElementById('paidTextDisplay').innerText = `₹ ${paid} (Paid)`;
+      document.getElementById('paidTextDisplay').innerText = `₹ ${paid} (Paid - ${mode})`;
 
       const msg = 
-`*फीस भुगतान पावती (FEE RECEIPT)* 🧾[span_12](start_span)[span_12](end_span)
-*संस्थान:* LUCENT COACHING CENTRE MUSRIGHARARI[span_13](start_span)[span_13](end_span)
-*पता:* नियर मिथिला आई हॉस्पिटल, मुसरीघरारी, समस्तीपुर[span_14](start_span)[span_14](end_span)
-*हेल्पलाइन:* 8789524958[span_15](start_span)[span_15](end_span)
+`*फीस भुगतान पावती (FEE RECEIPT)* 🧾[span_15](start_span)[span_15](end_span)
+*संस्थान:* LUCENT COACHING CENTRE[span_16](start_span)[span_16](end_span)
+*पता:* Near Mithila Eye Hospital, Musrigharari[span_17](start_span)[span_17](end_span)
+*हेल्पलाइन:* +91 8789524958[span_18](start_span)[span_18](end_span)
+*Director:* Md Mahfooz Alam | *MD:* Md Nazir[span_19](start_span)[span_19](end_span)
 
 सादर प्रणाम, आपके बच्चे की मासिक फीस सफलतापूर्वक प्राप्त हो गई है।
 
@@ -568,13 +612,13 @@
 --------------------------------
 
 धन्यवाद,
-*LUCENT COACHING CENTRE*[span_16](start_span)[span_16](end_span)`;
+*LUCENT COACHING CENTRE*[span_20](start_span)[span_20](end_span)`;
 
       document.getElementById('messagePreview').innerText = msg;
       return { name, sClass, month, pDate, paid, bal, mode, msg };
     }
 
-    // PRINT RECEIPT[span_17](start_span)[span_17](end_span)
+    // PRINT RECEIPT[span_21](start_span)[span_21](end_span)
     function printPaperReceipt() {
       const data = updateReceiptData();
       if (!document.getElementById('studentName').value.trim()) {
@@ -595,7 +639,7 @@
       window.print();
     }
 
-    // SEND RECEIPT VIA WHATSAPP OR SMS[span_18](start_span)[span_18](end_span)
+    // SEND RECEIPT VIA WHATSAPP OR SMS[span_22](start_span)[span_22](end_span)
     function sendReceiptMessage(type) {
       const data = updateReceiptData();
       let phone = document.getElementById('parentPhone').value.trim();
@@ -617,7 +661,7 @@
           waNumber = '91' + waNumber;
         }
         const waURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(data.msg)}`;
-        window.open(waURL, '_blank');[span_19](start_span)[span_19](end_span)
+        window.open(waURL, '_blank');[span_23](start_span)[span_23](end_span)
       } else if (type === 'sms') {
         const plainMsg = 
 `फीस पावती (LUCENT COACHING CENTRE):
@@ -627,10 +671,11 @@
 प्राप्त राशि: Rs.${data.paid} (${data.mode})
 शेष बकाया: Rs.${data.bal}
 संपर्क: 8789524958
-धन्यवाद[span_20](start_span)[span_20](end_span)!`;
+Director: Md Mahfooz Alam | MD: Md Nazir
+धन्यवाद[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span)!`;
 
         const smsURL = `sms:${cleanPhone}?body=${encodeURIComponent(plainMsg)}`;
-        window.location.href = smsURL;[span_21](start_span)[span_21](end_span)
+        window.location.href = smsURL;[span_26](start_span)[span_26](end_span)
       }
     }
 
