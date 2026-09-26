@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>फीस भुगतान रसीद पोर्टल - LUCENT COACHING CENTRE</title>
+  <title>LUCENT COACHING CENTRE - Fee Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Roboto', sans-serif; }
     body { background-color: #cbd5e1; color: #0f172a; padding: 25px 12px; }
 
-    /* RECTANGLE CONTAINER */
+    /* RECTANGLE MAIN CARD */
     .receipt-portal-card {
       max-width: 720px;
       margin: 0 auto;
@@ -19,7 +19,7 @@
       box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.85);
     }
 
-    /* HEADER SECTION */
+    /* CLEAN HEADER WITHOUT ANY DHABBA */
     .portal-header {
       background: #ffffff;
       color: #000000;
@@ -28,13 +28,13 @@
       border-bottom: 3px solid #000000;
     }
 
-    /* 36PX TIMES NEW ROMAN BLACK BOLD TITLE */
+    /* 36PX TIMES NEW ROMAN BLACK BOLD */
     .portal-header h1 {
       font-family: 'Times New Roman', Times, serif !important;
       font-size: 36px !important;
       font-weight: 900 !important;
       color: #000000 !important;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       line-height: 1.15;
       text-transform: uppercase;
       margin-bottom: 6px;
@@ -72,6 +72,18 @@
       color: #0f172a;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+    }
+
+    .badge-strip-sub {
+      background: #dc2626;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 12px;
+      display: inline-block;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
     .portal-body { padding: 22px; }
@@ -307,7 +319,7 @@
 <body>
 
   <div class="receipt-portal-card">
-    <!-- HIGHLIGHTED HEADER -->
+    <!-- PROPER CLEAN HEADER -->
     <div class="portal-header">
       <h1>LUCENT COACHING CENTRE</h1>
       <div class="inst-address">
@@ -319,6 +331,9 @@
       <div class="leadership-strip">
         <div class="leader-badge">Director: <strong>Md Mahfooz Alam</strong>[span_6](start_span)[span_6](end_span)</div>
         <div class="leader-badge">Managing Director: <strong>Md Nazir</strong></div>
+      </div>
+      <div>
+        <div class="badge-strip-sub">✦ OFFICIAL STUDENT FEE RECEIPT &amp; MANAGEMENT ✦</div>
       </div>
     </div>
 
@@ -425,7 +440,7 @@
     <div class="receipt-paper">
       <div class="rcpt-head">
         <h2>LUCENT COACHING CENTRE</h2>
-        <p>Near Mithila Eye Hospital, Musrigharari, Samastipur (Bihar)[span_10](start_span)[span_10](end_span)</p>
+        <p>Near Mithila Eye Hospital, Musrigharari, Samastipur (Bihar) - 848211[span_10](start_span)[span_10](end_span)</p>
         <p>Contact / Helpline: <strong>+91 8789524958</strong>[span_11](start_span)[span_11](end_span)</p>
         <div class="rcpt-leaders">
           Director: <strong>Md Mahfooz Alam</strong> | Managing Director: <strong>Md Nazir</strong>[span_12](start_span)[span_12](end_span)
@@ -585,105 +600,4 @@
       const name = document.getElementById('studentName').value.trim() || "[विद्यार्थी का नाम]";
       const sClass = document.getElementById('studentClass').value.trim() || "12th";
       const month = document.getElementById('feeMonth').value;
-      const pDate = getFormattedSelectedDate();
-      const paid = parseFloat(document.getElementById('paidAmount').value) || 0;
-      const bal = parseFloat(document.getElementById('balanceDue').value) || 0;
-      const mode = document.getElementById('payMode').value;
-
-      document.getElementById('paidTextDisplay').innerText = `₹ ${paid} (Paid - ${mode})`;
-
-      const msg = 
-`*फीस भुगतान पावती (FEE RECEIPT)* 🧾[span_15](start_span)[span_15](end_span)
-*संस्थान:* LUCENT COACHING CENTRE[span_16](start_span)[span_16](end_span)
-*पता:* Near Mithila Eye Hospital, Musrigharari[span_17](start_span)[span_17](end_span)
-*हेल्पलाइन:* +91 8789524958[span_18](start_span)[span_18](end_span)
-*Director:* Md Mahfooz Alam | *MD:* Md Nazir[span_19](start_span)[span_19](end_span)
-
-सादर प्रणाम, आपके बच्चे की मासिक फीस सफलतापूर्वक प्राप्त हो गई है।
-
-▫️ विद्यार्थी का नाम: *${name}*
-▫️ कक्षा (Class): *${sClass}*
-▫️ फीस का माह: *${month}*
-▫️ भुगतान दिनांक: *${pDate}*
-▫️ भुगतान माध्यम: *${mode}*
---------------------------------
-*प्राप्त राशि (Paid): ₹${paid}*
-▫️ शेष बकाया राशि: *₹${bal}*
---------------------------------
-
-धन्यवाद,
-*LUCENT COACHING CENTRE*[span_20](start_span)[span_20](end_span)`;
-
-      document.getElementById('messagePreview').innerText = msg;
-      return { name, sClass, month, pDate, paid, bal, mode, msg };
-    }
-
-    // PRINT RECEIPT[span_21](start_span)[span_21](end_span)
-    function printPaperReceipt() {
-      const data = updateReceiptData();
-      if (!document.getElementById('studentName').value.trim()) {
-        alert("कृपया पहले छात्र का नाम चुनें!");
-        return;
-      }
-
-      document.getElementById('rcptNo').innerText = 'LCC-' + Math.floor(1000 + Math.random() * 9000);
-      document.getElementById('rcptDate').innerText = data.pDate;
-      document.getElementById('rcptStudentName').innerText = data.name;
-      document.getElementById('rcptClass').innerText = data.sClass;
-      document.getElementById('rcptPhone').innerText = document.getElementById('parentPhone').value.trim() || 'N/A';
-      document.getElementById('rcptMonth').innerText = data.month;
-      document.getElementById('rcptPaid').innerText = `₹${data.paid}`;
-      document.getElementById('rcptMode').innerText = data.mode;
-      document.getElementById('rcptBal').innerText = `₹${data.bal}`;
-
-      window.print();
-    }
-
-    // SEND RECEIPT VIA WHATSAPP OR SMS[span_22](start_span)[span_22](end_span)
-    function sendReceiptMessage(type) {
-      const data = updateReceiptData();
-      let phone = document.getElementById('parentPhone').value.trim();
-
-      if (!document.getElementById('studentName').value.trim()) {
-        alert("कृपया पहले छात्र का नाम चुनें!");
-        return;
-      }
-      if (!phone) {
-        alert("कृपया अभिभावक का मोबाइल नंबर दर्ज करें!");
-        return;
-      }
-
-      let cleanPhone = phone.replace(/[^0-9]/g, '');
-
-      if (type === 'whatsapp') {
-        let waNumber = cleanPhone;
-        if (waNumber.length === 10) {
-          waNumber = '91' + waNumber;
-        }
-        const waURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(data.msg)}`;
-        window.open(waURL, '_blank');[span_23](start_span)[span_23](end_span)
-      } else if (type === 'sms') {
-        const plainMsg = 
-`फीस पावती (LUCENT COACHING CENTRE):
-छात्र: ${data.name} (${data.sClass})
-माह: ${data.month}
-दिनांक: ${data.pDate}
-प्राप्त राशि: Rs.${data.paid} (${data.mode})
-शेष बकाया: Rs.${data.bal}
-संपर्क: 8789524958
-Director: Md Mahfooz Alam | MD: Md Nazir
-धन्यवाद[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span)!`;
-
-        const smsURL = `sms:${cleanPhone}?body=${encodeURIComponent(plainMsg)}`;
-        window.location.href = smsURL;[span_26](start_span)[span_26](end_span)
-      }
-    }
-
-    window.onload = function() {
-      setDefaultDate();
-      populateDropdown();
-      updateReceiptData();
-    };
-  </script>
-</body>
-</html>
+      const pDate = getFormattedSelec
