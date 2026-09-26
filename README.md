@@ -1,4 +1,3 @@
-# FEE-MANAGEMENT-PORTAL-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -6,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FEE-MANAGEMENT-PORTAL</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- ==================== 1. CSS CODE ==================== -->
   <style>
     * {
       box-sizing: border-box;
@@ -101,8 +102,8 @@
     }
     .form-field input, .form-field select {
       width: 100%;
-      padding: 9px 11px;
-      font-size: 13.5px;
+      padding: 10px 11px;
+      font-size: 14px;
       border: 1.5px solid #cbd5e1;
       border-radius: 0px;
       outline: none;
@@ -115,14 +116,15 @@
       background: #f8fafc;
     }
 
-    .month-dropdown-highlight {
+    .dropdown-large {
       background: #f0fdf4 !important;
       border: 1.5px solid #003366 !important;
       font-weight: 800 !important;
       color: #003366 !important;
+      cursor: pointer;
     }
 
-    /* SUMMARY BAR EXACT SAME */
+    /* SUMMARY BAR */
     .balance-bar {
       background: #f8fafc;
       border: 1.5px solid #003366;
@@ -181,22 +183,16 @@
       transition: all 0.1s ease;
     }
 
-    .btn-print {
-      background: #003366;
-    }
+    .btn-print { background: #003366; }
     .btn-print:hover { background: #002244; }
 
-    .btn-whatsapp {
-      background: #16a34a;
-    }
+    .btn-whatsapp { background: #16a34a; }
     .btn-whatsapp:hover { background: #15803d; }
 
-    .btn-sms {
-      background: #0284c7;
-    }
+    .btn-sms { background: #0284c7; }
     .btn-sms:hover { background: #0369a1; }
 
-    /* PRINT TEMPLATE */
+    /* PRINT RECEIPT LAYOUT */
     #receiptPrintArea { display: none; }
 
     @media print {
@@ -271,43 +267,46 @@
 </head>
 <body>
 
+  <!-- ==================== 2. HTML STRUCTURE ==================== -->
   <div class="main-wrapper">
     <div class="portal-title-top">FEE-MANAGEMENT-PORTAL.</div>
 
     <div class="portal-card">
       <div class="inst-header">
         <h1>LUCENT COACHING CENTRE</h1>
-        <p>Near Mithila Eye Hospital, Musrighari, Samastipur (Bihar) | Helpline: +91 8789524958</p>
-        <div class="badge-strip">✦ OFFICIAL STUDENT FEE RECEIPT &amp; MANAGEMENT ✦</div>
+        <p>Near Mithila Eye Hospital, Musrighari, Samastipur (Bihar) | Helpline: +91 8789524958[span_2](start_span)[span_2](end_span)</p>
+        <div class="badge-strip">✦ OFFICIAL STUDENT FEE RECEIPT &amp; MANAGEMENT ✦[span_3](start_span)[span_3](end_span)</div>
       </div>
 
       <!-- 1. STUDENT INFORMATION -->
-      <div class="section-title">1. Student Information (छात्र विवरण)</div>
+      <div class="section-title">1. Student Information (छात्र विवरण)[span_4](start_span)[span_4](end_span)</div>
       <div class="form-grid-3">
+        <!-- Student Dropdown -->
         <div class="form-field">
-          <label>छात्र चुनें (Dropdown List) *</label>
-          <select id="studentSelect" onchange="onStudentSelectChange()">
+          <label>छात्र चुनें (Dropdown List) *[span_5](start_span)[span_5](end_span)</label>
+          <select id="studentSelect" class="dropdown-large" onchange="onStudentSelectChange()">
             <option value="">-- छात्र का नाम चुनें --</option>
           </select>
         </div>
         <div class="form-field">
-          <label>Student Full Name (छात्र का नाम) *</label>
+          <label>Student Full Name (छात्र का नाम) *[span_6](start_span)[span_6](end_span)</label>
           <input type="text" id="studentName" placeholder="उदा. Rahul Kumar" oninput="calculateTotal()">
         </div>
         <div class="form-field">
-          <label>Parents Mobile Number (WhatsApp/SMS) *</label>
+          <label>Parents Mobile Number (WhatsApp/SMS) *[span_7](start_span)[span_7](end_span)</label>
           <input type="tel" id="parentPhone" placeholder="10 digit number">
         </div>
       </div>
 
       <div class="form-grid-3">
         <div class="form-field">
-          <label>Class / Batch *</label>
+          <label>Class / Batch *[span_8](start_span)[span_8](end_span)</label>
           <input type="text" id="studentClass" value="12th" oninput="calculateTotal()">
         </div>
+        <!-- Month Dropdown -->
         <div class="form-field">
-          <label>Fee Month (फीस का महीना चुनें) *</label>
-          <select id="feeMonth" class="month-dropdown-highlight" onchange="calculateTotal()">
+          <label>Fee Month (फीस का महीना चुनें) *[span_9](start_span)[span_9](end_span)</label>
+          <select id="feeMonth" class="dropdown-large" onchange="calculateTotal()">
             <option value="January 2026">January 2026</option>
             <option value="February 2026">February 2026</option>
             <option value="March 2026">March 2026</option>
@@ -323,38 +322,38 @@
           </select>
         </div>
         <div class="form-field">
-          <label>Payment Date (भुगतान तारीख चुनें) *</label>
+          <label>Payment Date (भुगतान तारीख चुनें) *[span_10](start_span)[span_10](end_span)</label>
           <input type="date" id="paymentDate" onchange="calculateTotal()">
         </div>
       </div>
 
       <!-- 2. FEE DETAILS & PAYMENT -->
-      <div class="section-title">2. Fee Details &amp; Payment (जमा व रसीद विवरण)</div>
+      <div class="section-title">2. Fee Details &amp; Payment (जमा व रसीद विवरण)[span_11](start_span)[span_11](end_span)</div>
       <div class="form-grid-3">
         <div class="form-field">
-          <label>Previous Due (पिछला बकाया ₹)</label>
+          <label>Previous Due (पिछला बकाया ₹)[span_12](start_span)[span_12](end_span)</label>
           <input type="number" id="prevDues" value="0" min="0" oninput="calculateTotal()">
         </div>
         <div class="form-field">
-          <label>Current Month Fee (चालू शुल्क ₹) *</label>
+          <label>Current Month Fee (चालू शुल्क ₹) *[span_13](start_span)[span_13](end_span)</label>
           <input type="number" id="currFee" value="450" min="0" oninput="calculateTotal()">
         </div>
         <div class="form-field">
-          <label>Amount Paid Now (जमा की गई राशि ₹) *</label>
+          <label>Amount Paid Now (जमा की गई राशि ₹) *[span_14](start_span)[span_14](end_span)</label>
           <input type="number" id="paidAmount" value="450" min="0" oninput="calculateTotal()">
         </div>
       </div>
 
       <div class="form-grid-3">
         <div class="form-field">
-          <label>Payment Mode (भुगतान माध्यम) *</label>
+          <label>Payment Mode (भुगतान माध्यम) *[span_15](start_span)[span_15](end_span)</label>
           <select id="payMode" onchange="calculateTotal()">
             <option value="Cash (नकद)">Cash (नकद)</option>
-            <option value="Online (PhonePe/UPI)">Online (PhonePe/UPI)</option>
+            <option value="Online (PhonePe/UPI)">Online (PhonePe/UPI)[span_16](start_span)[span_16](end_span)</option>
           </select>
         </div>
         <div class="form-field" style="grid-column: span 2;">
-          <label>Receipt Remarks / Note (रसीद रिमार्क)</label>
+          <label>Receipt Remarks / Note (रसीद रिमार्क)[span_17](start_span)[span_17](end_span)</label>
           <input type="text" id="receiptNote" value="फीस सफलतापूर्वक प्राप्त हुई।" oninput="calculateTotal()">
         </div>
       </div>
@@ -362,10 +361,10 @@
       <!-- Balance Summary Box -->
       <div class="balance-bar">
         <div class="math-text" id="mathBreakdown">
-          कुल शुल्क: ₹450 (बकाया ₹0 + चालू ₹450) | जमा: ₹450 | शेष: ₹0
+          कुल शुल्क: ₹450 (बकाया ₹0 + चालू ₹450) | जमा: ₹450 | शेष: ₹0[span_18](start_span)[span_18](end_span)
         </div>
         <div class="total-box">
-          <span>Remaining Balance (शेष बकाया)</span>
+          <span>Remaining Balance (शेष बकाया)[span_19](start_span)[span_19](end_span)</span>
           <strong id="balanceDisplay">₹ 0</strong>
         </div>
       </div>
@@ -373,24 +372,24 @@
       <!-- Action Buttons -->
       <div class="btn-row-3">
         <button type="button" class="action-btn btn-print" onclick="printReceipt()">
-          <span>🖨️</span> रसीद प्रिंट / PDF
+          <span>🖨️</span> रसीद प्रिंट / PDF[span_20](start_span)[span_20](end_span)
         </button>
         <button type="button" class="action-btn btn-whatsapp" onclick="sendPaidReceipt('whatsapp')">
-          <span>💬</span> WhatsApp रसीद भेजें
+          <span>💬</span> WhatsApp रसीद भेजें[span_21](start_span)[span_21](end_span)
         </button>
         <button type="button" class="action-btn btn-sms" onclick="sendPaidReceipt('sms')">
-          <span>✉️</span> Normal SMS रसीद भेजें
+          <span>✉️</span> Normal SMS रसीद भेजें[span_22](start_span)[span_22](end_span)
         </button>
       </div>
     </div>
   </div>
 
-  <!-- PRINTABLE PAPER RECEIPT -->
+  <!-- PRINTABLE PAPER RECEIPT TEMPLATE -->
   <div id="receiptPrintArea">
     <div class="receipt-paper">
       <div class="rcpt-head">
         <h2>LUCENT COACHING CENTRE</h2>
-        <p>Near Mithila Eye Hospital, Musrighari, Samastipur (Bihar) | Ph: +91 8789524958</p>
+        <p>Near Mithila Eye Hospital, Musrighari, Samastipur (Bihar) | Ph: +91 8789524958[span_23](start_span)[span_23](end_span)</p>
         <div style="font-weight: bold; margin-top: 5px; font-size: 13px;">★ OFFICIAL FEE PAYMENT RECEIPT ★</div>
       </div>
 
@@ -449,8 +448,9 @@
     </div>
   </div>
 
+  <!-- ==================== 3. JAVASCRIPT CODE ==================== -->
   <script>
-    // Complete Student List
+    // Complete Student Directory Data[span_24](start_span)[span_24](end_span)
     const studentsData = [
       { name: "AMJAD ALAM", phone: "9955684664" },
       { name: "ANAMIKA KRI", phone: "7257054499" },
@@ -510,6 +510,7 @@
       { name: "VERSA KRI", phone: "7255032487" }
     ];
 
+    // Calendar me default aaj ki date set karna
     function setDefaultDate() {
       const today = new Date();
       const yyyy = today.getFullYear();
@@ -518,6 +519,7 @@
       document.getElementById('paymentDate').value = `${yyyy}-${mm}-${dd}`;
     }
 
+    // Date ko DD/MM/YYYY format me convert karna
     function getFormattedSelectedDate() {
       const val = document.getElementById('paymentDate').value;
       if (!val) return "";
@@ -525,8 +527,10 @@
       return `${p[2]}/${p[1]}/${p[0]}`;
     }
 
+    // Dropdown me bachho ka naam load karna
     function populateDropdown() {
       const select = document.getElementById('studentSelect');
+      select.innerHTML = '<option value="">-- छात्र का नाम चुनें --</option>';
       studentsData.forEach((st, idx) => {
         const opt = document.createElement('option');
         opt.value = idx;
@@ -535,6 +539,7 @@
       });
     }
 
+    // Student select hone par fields auto-fill karna
     function onStudentSelectChange() {
       const select = document.getElementById('studentSelect');
       const val = select.value;
@@ -548,6 +553,7 @@
       calculateTotal();
     }
 
+    // Realtime bill math calculation
     function calculateTotal() {
       const prev = parseFloat(document.getElementById('prevDues').value) || 0;
       const curr = parseFloat(document.getElementById('currFee').value) || 0;
@@ -564,37 +570,6 @@
       return { totalFee, paid, remaining, prev, curr };
     }
 
+    // Print Receipt
     function printReceipt() {
-      const name = document.getElementById('studentName').value.trim();
-      const phone = document.getElementById('parentPhone').value.trim();
-      const sClass = document.getElementById('studentClass').value.trim();
-      const month = document.getElementById('feeMonth').value;
-      const mode = document.getElementById('payMode').value;
-      const calc = calculateTotal();
-      const pDate = getFormattedSelectedDate();
-
-      if (!name) {
-        alert("कृपया पहले छात्र का नाम चुनें!");
-        return;
-      }
-
-      document.getElementById('rcptNo').innerText = 'LCC-' + Math.floor(1000 + Math.random() * 9000);
-      document.getElementById('rcptDate').innerText = pDate;
-      document.getElementById('rcptStudentName').innerText = name;
-      document.getElementById('rcptClass').innerText = sClass;
-      document.getElementById('rcptPhone').innerText = phone || 'N/A';
-      document.getElementById('rcptMonth').innerText = month;
-      document.getElementById('rcptPrevDue').innerText = `₹${calc.prev}`;
-      document.getElementById('rcptMonthFee').innerText = `₹${calc.curr}`;
-      document.getElementById('rcptPaid').innerText = `₹${calc.paid}`;
-      document.getElementById('rcptMode').innerText = mode;
-      document.getElementById('rcptBal').innerText = `₹${calc.remaining}`;
-
-      window.print();
-    }
-
-    function sendPaidReceipt(channel) {
-      const name = document.getElementById('studentName').value.trim();
-      let phone = document.getElementById('parentPhone').value.trim();
-      const sClass = document.getElementById('studentClass').value.trim();
-  
+      const name = document.getElementById('studentName').value.trim
