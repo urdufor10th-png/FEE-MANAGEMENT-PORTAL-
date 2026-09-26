@@ -1,217 +1,526 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUCENT COACHING CENTRE - Fee Management</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f1f5f9;color:#172033}
-header{background:linear-gradient(135deg,#0f3d91,#2563eb);color:white;padding:22px 15px;text-align:center}
-header h1{margin:0;font-size:27px}
-header p{margin:6px 0 0;opacity:.9}
-.container{max-width:1200px;margin:20px auto;padding:0 12px}
-.dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
-.card{background:white;border-radius:14px;padding:17px;box-shadow:0 3px 12px #0001}
-.card small{color:#64748b}.card h2{margin:7px 0 0}
-.form-box{background:white;padding:18px;border-radius:14px;box-shadow:0 3px 12px #0001;margin-bottom:18px}
-.form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-label{font-size:13px;font-weight:bold;color:#475569}
-input,select{width:100%;padding:11px;margin-top:5px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px}
-button{border:0;border-radius:8px;padding:10px 15px;cursor:pointer;font-weight:bold}
-.btn-primary{background:#2563eb;color:white}.btn-success{background:#16a34a;color:white}
-.btn-warning{background:#f59e0b;color:white}.btn-danger{background:#dc2626;color:white}
-.btn-dark{background:#334155;color:white}
-.actions{margin-top:15px;display:flex;gap:8px;flex-wrap:wrap}
-.table-box{background:white;border-radius:14px;padding:15px;box-shadow:0 3px 12px #0001;overflow:auto}
-.topbar{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
-.search{max-width:350px}
-table{width:100%;border-collapse:collapse;min-width:900px}
-th,td{padding:11px 8px;border-bottom:1px solid #e2e8f0;text-align:left;font-size:13px}
-th{background:#eff6ff;color:#1e3a8a}
-.paid{color:#15803d;font-weight:bold}.due{color:#dc2626;font-weight:bold}
-.badge{padding:4px 8px;border-radius:20px;background:#dcfce7;color:#166534;font-size:11px}
-.badge-due{background:#fee2e2;color:#991b1b}
-.modal{display:none;position:fixed;inset:0;background:#0008;z-index:10;align-items:center;justify-content:center;padding:15px}
-.modal-content{background:white;width:min(500px,100%);border-radius:14px;padding:20px}
-.receipt{border:2px solid #222;padding:20px;text-align:center}
-.receipt hr{border:0;border-top:1px solid #aaa}
-.receipt table{min-width:0;margin-top:12px}.receipt td{border:1px solid #aaa}
-@media(max-width:800px){.dashboard{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.dashboard{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.card h2{font-size:20px}header h1{font-size:22px}}
-@media print{
-body{background:white}.no-print{display:none!important}.modal{display:flex!important;position:static;background:white;padding:0}.modal-content{box-shadow:none;width:100%}.receipt{border:2px solid #000}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FEE-MANAGEMENT-PORTAL - LUCENT COACHING CENTRE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Roboto', sans-serif; }
+    body { background-color: #f1f5f9; color: #0f172a; padding: 25px 12px; }
+
+    .main-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .portal-title-top {
+      font-size: 20px;
+      font-weight: 900;
+      color: #0f2744;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+    .portal-subtitle-top {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 12px;
+    }
+
+    .portal-card {
+      background: #ffffff;
+      border: 1.5px solid #003366;
+      border-radius: 0px;
+      padding: 24px;
+      box-shadow: 0 4px 15px rgba(0, 34, 68, 0.08);
+    }
+
+    .inst-header {
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 15px;
+    }
+    .inst-header h1 {
+      font-size: 24px;
+      font-weight: 900;
+      color: #002244;
+      letter-spacing: 0.5px;
+    }
+    .inst-header p {
+      font-size: 13px;
+      color: #475569;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .badge-strip {
+      background: #dc2626;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 14px;
+      display: inline-block;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #003366;
+      border-left: 4px solid #003366;
+      padding-left: 8px;
+      margin: 20px 0 14px;
+      text-transform: uppercase;
+    }
+
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-field label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 5px;
+    }
+    .form-field input, .form-field select {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 13.5px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 0px;
+      outline: none;
+      background: #ffffff;
+      color: #0f172a;
+      font-weight: 600;
+    }
+    .form-field input:focus, .form-field select:focus {
+      border-color: #0284c7;
+      background: #f8fafc;
+    }
+
+    .month-dropdown-large {
+      font-size: 15px !important;
+      font-weight: 800 !important;
+      color: #003366 !important;
+      padding: 11px 12px !important;
+      border: 2px solid #003366 !important;
+      background: #f0fdf4 !important;
+      cursor: pointer;
+    }
+
+    /* SUMMARY BAR */
+    .balance-bar {
+      background: #f8fafc;
+      border: 2px solid #003366;
+      border-radius: 0px;
+      padding: 14px;
+      margin: 18px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .balance-bar .math-text {
+      font-size: 13px;
+      color: #334155;
+      font-weight: 700;
+    }
+    .balance-bar .total-box {
+      text-align: right;
+    }
+    .balance-bar .total-box span {
+      font-size: 11px;
+      font-weight: 800;
+      color: #003366;
+      display: block;
+      text-transform: uppercase;
+    }
+    .balance-bar .total-box strong {
+      font-size: 24px;
+      color: #dc2626;
+      font-weight: 900;
+    }
+
+    /* PAYMENT STRIP */
+    .phonepe-strip {
+      background: #faf5ff;
+      border: 1.5px dashed #9333ea;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      font-size: 12.5px;
+    }
+    .phonepe-strip strong { color: #581c87; }
+
+    /* PREVIEW */
+    .preview-wrapper {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 0px;
+      padding: 12px;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #1e293b;
+      white-space: pre-wrap;
+      margin-bottom: 20px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    /* DUAL BUTTONS */
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .action-btn {
+      width: 100%;
+      border-radius: 0px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.1s ease;
+    }
+
+    .btn-whatsapp {
+      background: #16a34a;
+      color: #ffffff;
+      border: 2px solid #14532d;
+      box-shadow: 4px 4px 0px #14532d;
+    }
+    .btn-whatsapp:hover {
+      background: #15803d;
+      transform: translate(1px, 1px);
+      box-shadow: 3px 3px 0px #14532d;
+    }
+
+    .btn-sms {
+      background: #0284c7;
+      color: #ffffff;
+      border: 2px solid #0369a1;
+      box-shadow: 4px 4px 0px #0369a1;
+    }
+    .btn-sms:hover {
+      background: #0369a1;
+      transform: translate(1px, 1px);
+      box-shadow: 3px 3px 0px #0369a1;
+    }
+
+    .action-btn:active {
+      transform: translate(4px, 4px);
+      box-shadow: none;
+    }
+
+    @media (max-width: 768px) {
+      .form-grid-3, .btn-row { grid-template-columns: 1fr; }
+      .balance-bar { flex-direction: column; align-items: flex-start; }
+      .balance-bar .total-box { text-align: left; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-<h1>🏫 LUCENT COACHING CENTRE</h1>
-<p>Near Mithila Eye Hospital, Musrigharari</p>
-<h3 style="margin:8px 0 0">💰 FEE MANAGEMENT PORTAL</h3>
-</header>
+  <div class="main-wrapper">
+    <div class="portal-title-top">FEE-MANAGEMENT-PORTAL.</div>
+    <div class="portal-subtitle-top">Only School Or Coaching Institute &lt;!DOCTYPE html&gt;</div>
 
-<div class="container">
+    <div class="portal-card">
+      <div class="inst-header">
+        <h1>LUCENT COACHING CENTRE</h1>
+        <p>Near Mithila Eye Hospital, Musrighari, Samastipur (Bihar) | Helpline: +91 9693345819[span_3](start_span)[span_3](end_span)</p>
+        <div class="badge-strip">✦ STUDENT FEE COLLECTION &amp; MANAGEMENT PORTAL ✦</div>
+      </div>
 
-<div class="dashboard">
-<div class="card"><small>Total Students</small><h2 id="totalStudents">0</h2></div>
-<div class="card"><small>Total Fee</small><h2 id="totalFee">₹0</h2></div>
-<div class="card"><small>Total Collected</small><h2 id="totalPaid" class="paid">₹0</h2></div>
-<div class="card"><small>Total Due</small><h2 id="totalDue" class="due">₹0</h2></div>
-</div>
+      <!-- 1. STUDENT INFORMATION -->
+      <div class="section-title">1. Student Information (छात्र विवरण)</div>
+      <div class="form-grid-3">
+        <div class="form-field">
+          <label>छात्र चुनें (Student Dropdown) *</label>
+          <select id="studentSelect" onchange="onStudentSelectChange()">
+            <option value="">-- छात्र का नाम चुनें --</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Student Full Name (छात्र का नाम) *</label>
+          <input type="text" id="studentName" placeholder="उदा. Rahul Kumar" oninput="calculateTotal()">
+        </div>
+        <div class="form-field">
+          <label>Parents Mobile Number (WhatsApp/SMS) *</label>
+          <input type="tel" id="parentPhone" placeholder="10 digit number">
+        </div>
+      </div>
 
-<div class="form-box">
-<h3 id="formTitle">➕ Add Student Fee</h3>
-<div class="form-grid">
-<div><label>Student Name</label><input id="name" placeholder="Enter student name"></div>
-<div><label>Roll No.</label><input id="roll" placeholder="Roll number"></div>
-<div><label>Class / Section</label><input id="className" placeholder="e.g. 9th A"></div>
-<div><label>Father's Name</label><input id="father" placeholder="Father's name"></div>
-<div><label>Total Fee (₹)</label><input id="total" type="number" min="0" placeholder="0"></div>
-<div><label>Paid Fee (₹)</label><input id="paid" type="number" min="0" placeholder="0"></div>
-<div><label>Payment Date</label><input id="date" type="date"></div>
-<div><label>Payment Mode</label>
-<select id="mode"><option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Other</option></select>
-</div>
-</div>
-<div class="actions">
-<button class="btn-primary" onclick="saveStudent()">💾 Save Fee</button>
-<button class="btn-dark" onclick="clearForm()">🔄 Clear</button>
-</div>
-</div>
+      <div class="form-grid-3">
+        <div class="form-field">
+          <label>Class / Course (कक्षा / बैच) *</label>
+          <input type="text" id="studentClass" value="12th" oninput="calculateTotal()">
+        </div>
+        <div class="form-field" style="grid-column: span 2;">
+          <label>Fee Month (माह का चयन करें - Large List) *</label>
+          <select id="feeMonth" class="month-dropdown-large" onchange="calculateTotal()">
+            <option value="January 2026">January 2026</option>
+            <option value="February 2026">February 2026</option>
+            <option value="March 2026">March 2026</option>
+            <option value="April 2026">April 2026</option>
+            <option value="May 2026">May 2026</option>
+            <option value="June 2026">June 2026</option>
+            <option value="July 2026">July 2026</option>
+            <option value="August 2026">August 2026</option>
+            <option value="September 2026" selected>September 2026</option>
+            <option value="October 2026">October 2026</option>
+            <option value="November 2026">November 2026</option>
+            <option value="December 2026">December 2026</option>
+          </select>
+        </div>
+      </div>
 
-<div class="table-box">
-<div class="topbar">
-<h3 style="margin:0">📋 Student Fee Records</h3>
-<input class="search" id="search" oninput="render()" placeholder="🔎 Search name / roll / class...">
-</div>
-<table>
-<thead>
-<tr><th>#</th><th>Student</th><th>Roll</th><th>Class</th><th>Father</th><th>Total</th><th>Paid</th><th>Due</th><th>Date</th><th>Status</th><th>Action</th></tr>
-</thead>
-<tbody id="tbody"></tbody>
-</table>
-</div>
-</div>
+      <!-- 2. FEE CALCULATION -->
+      <div class="section-title">2. Fee Calculation &amp; Payment (शुल्क विवरण)</div>
+      <div class="form-grid-3">
+        <div class="form-field">
+          <label>Previous Due (पिछला बकाया ₹) *</label>
+          <input type="number" id="prevDues" value="0" min="0" oninput="calculateTotal()">
+        </div>
+        <div class="form-field">
+          <label>Current Month Fee (चालू शुल्क ₹) *</label>
+          <input type="number" id="currFee" value="450" min="0" oninput="calculateTotal()">
+        </div>
+        <div class="form-field">
+          <label>Discount / Paid Now (छूट या जमा ₹)</label>
+          <input type="number" id="discountPaid" value="0" min="0" oninput="calculateTotal()">
+        </div>
+      </div>
 
-<div class="modal" id="receiptModal">
-<div class="modal-content">
-<div class="no-print" style="text-align:right;margin-bottom:8px">
-<button class="btn-dark" onclick="closeReceipt()">✖ Close</button>
-<button class="btn-primary" onclick="window.print()">🖨️ Print</button>
-</div>
-<div class="receipt" id="receipt"></div>
-</div>
-</div>
+      <!-- Balance Summary Box -->
+      <div class="balance-bar">
+        <div class="math-text" id="mathBreakdown">
+          गणना: ₹0 (बकाया) + ₹450 (चालू शुल्क) - ₹0 (छूट)
+        </div>
+        <div class="total-box">
+          <span>Balance Due (कुल देय राशि)</span>
+          <strong id="totalPayableDisplay">₹ 450</strong>
+        </div>
+      </div>
 
-<script>
-let students = JSON.parse(localStorage.getItem("lucentFeeData") || "[]");
-let editIndex = -1;
+      <!-- PhonePe Details -->
+      <div class="phonepe-strip">
+        <strong>🟣 PhonePe / UPI भुगतान विवरण:</strong>[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span)<br>
+        नाम: <b>Md Mahfooz</b> | PhonePe: <b>8789524958</b> | UPI ID: <b>8789524958-2@ibl</b>[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span)
+      </div>
 
-document.getElementById("date").valueAsDate = new Date();
+      <!-- Message Preview -->
+      <label style="font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 5px; display: block;">
+        लाइव मेसेज प्रीव्यू:
+      </label>
+      <div class="preview-wrapper" id="messagePreview"></div>
 
-function money(n){return "₹" + Number(n||0).toLocaleString("en-IN")}
-function saveData(){localStorage.setItem("lucentFeeData",JSON.stringify(students))}
-function val(id){return document.getElementById(id).value.trim()}
+      <!-- Actions: WhatsApp + SMS -->
+      <div class="btn-row">
+        <button type="button" class="action-btn btn-whatsapp" onclick="sendMessage('whatsapp')">
+          <span>💬</span> WhatsApp पर बिल भेजें
+        </button>
+        <button type="button" class="action-btn btn-sms" onclick="sendMessage('sms')">
+          <span>✉️</span> SMS (संदेश) भेजें
+        </button>
+      </div>
+    </div>
+  </div>
 
-function saveStudent(){
- const name=val("name"), roll=val("roll"), cls=val("className"), father=val("father");
- const total=Number(val("total")||0), paid=Number(val("paid")||0);
- const date=val("date"), mode=val("mode");
- if(!name){alert("Student Name भरना जरूरी है।");return}
- if(paid>total){alert("Paid Fee, Total Fee से ज्यादा नहीं हो सकती।");return}
+  <script>
+    // OkCredit PDF data (Name aur Mobile Number)
+    const studentsData = [
+      { name: "AMJAD ALAM", phone: "9955684664" },
+      { name: "ANAMIKA KRI", phone: "7257054499" },
+      { name: "ANJALI KRI 25", phone: "9661935200" },
+      { name: "Anjali Kumari 55", phone: "8102799207" },
+      { name: "ANSHU KUMARI-9", phone: "7352082956" },
+      { name: "Anshu kri-42", phone: "" },
+      { name: "ANUPAM KRI", phone: "9241417455" },
+      { name: "BEAUTY KUMARI", phone: "6200783994" },
+      { name: "DHIRAJ KUMAR", phone: "6204035295" },
+      { name: "DURGA KRI", phone: "9204523024" },
+      { name: "GAUTAM KR", phone: "7352494184" },
+      { name: "GOLU KR.", phone: "7654872555" },
+      { name: "Jamila 12th", phone: "9341643733" },
+      { name: "JASMIN PARWEEN", phone: "9693402311" },
+      { name: "JULY KRI", phone: "8130457073" },
+      { name: "KARINA KUMARI", phone: "7324983282" },
+      { name: "KHUSHBOO KRI", phone: "7764836893" },
+      { name: "Md Dilsan", phone: "9942833704" },
+      { name: "MD MERAJ-17", phone: "9330773998" },
+      { name: "MD MERAJ-41", phone: "7091859037" },
+      { name: "MD SAJID", phone: "9204687474" },
+      { name: "MD SIRAJ", phone: "7549898828" },
+      { name: "MD WASIM", phone: "9102763861" },
+      { name: "MEHAR KALI", phone: "6299956098" },
+      { name: "MEHJABIN PARWEEN", phone: "9990688776" },
+      { name: "MONIKA KRI", phone: "6201578087" },
+      { name: "MUSARRAT PRAWEEN", phone: "7079910638" },
+      { name: "MUSKAN BEGUM", phone: "9330942019" },
+      { name: "NEHA KHATOON", phone: "9709587061" },
+      { name: "NISHU KRI 30", phone: "8210975252" },
+      { name: "NISHU KRI-45", phone: "8475868000" },
+      { name: "PARITOSH KUMAR", phone: "9142869790" },
+      { name: "PRITY KRI", phone: "7079598875" },
+      { name: "PRIYANKA KRI", phone: "9155206202" },
+      { name: "Priyanshu kr", phone: "7004128721" },
+      { name: "RADHA KRI", phone: "9534005894" },
+      { name: "RAGINI KRI", phone: "6201389319" },
+      { name: "Raja kr", phone: "9296503161" },
+      { name: "RAJ NANDINI KRI", phone: "8873126752" },
+      { name: "RANJAN KUMAR", phone: "9709864426" },
+      { name: "RAUSHNI KRI", phone: "9534758058" },
+      { name: "RIMJHIM KRI", phone: "9570170325" },
+      { name: "ROKHSANA KHATUN", phone: "9709658472" },
+      { name: "RUPA KRI", phone: "9661273871" },
+      { name: "SAHIN PARWEEN", phone: "7372035346" },
+      { name: "SAMA AFREEN", phone: "9110989890" },
+      { name: "SANDHNA KRI", phone: "8002000873" },
+      { name: "SANIYA PARWEEN", phone: "7654162435" },
+      { name: "SAVITA KRI", phone: "7544842569" },
+      { name: "SHAHNAWAZ HUSSAIN", phone: "8102643833" },
+      { name: "SHIVANI KRI", phone: "7563912052" },
+      { name: "SNEHA KUMARI", phone: "7295997451" },
+      { name: "SUDHA KRI", phone: "9931051192" },
+      { name: "SUMAN KUMARI", phone: "9560726946" },
+      { name: "SUNITA KRI", phone: "8252764123" },
+      { name: "VERSA KRI", phone: "7255032487" }
+    ];
 
- const data={name,roll,cls,father,total,paid,date,mode};
- if(editIndex===-1) students.push(data); else students[editIndex]=data;
- saveData(); clearForm(); render();
- alert(editIndex===-1 ? "Fee record saved successfully!" : "Record updated successfully!");
- editIndex=-1;
-}
+    function populateDropdown() {
+      const select = document.getElementById('studentSelect');
+      studentsData.forEach((st, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        opt.textContent = `${st.name} (${st.phone || 'No Phone'})`;
+        select.appendChild(opt);
+      });
+    }
 
-function clearForm(){
- ["name","roll","className","father","total","paid"].forEach(id=>document.getElementById(id).value="");
- document.getElementById("date").valueAsDate=new Date();
- document.getElementById("mode").value="Cash";
- document.getElementById("formTitle").innerText="➕ Add Student Fee";
- editIndex=-1;
-}
+    function onStudentSelectChange() {
+      const select = document.getElementById('studentSelect');
+      const val = select.value;
+      if (val !== "") {
+        const student = studentsData[val];
+        document.getElementById('studentName').value = student.name;
+        document.getElementById('parentPhone').value = student.phone || "";
+        document.getElementById('prevDues').value = 0;
+        document.getElementById('discountPaid').value = 0;
+      }
+      calculateTotal();
+    }
 
-function editStudent(i){
- const s=students[i]; editIndex=i;
- document.getElementById("name").value=s.name;
- document.getElementById("roll").value=s.roll;
- document.getElementById("className").value=s.cls;
- document.getElementById("father").value=s.father;
- document.getElementById("total").value=s.total;
- document.getElementById("paid").value=s.paid;
- document.getElementById("date").value=s.date;
- document.getElementById("mode").value=s.mode;
- document.getElementById("formTitle").innerText="✏️ Edit Student Fee";
- window.scrollTo({top:0,behavior:"smooth"});
-}
+    function getDueDate10DaysLater() {
+      const date = new Date();
+      date.setDate(date.getDate() + 10);
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
 
-function deleteStudent(i){
- if(confirm("क्या आप इस record को delete करना चाहते हैं?")){
-  students.splice(i,1);saveData();render();
- }
-}
+    function calculateTotal() {
+      const prev = parseFloat(document.getElementById('prevDues').value) || 0;
+      const curr = parseFloat(document.getElementById('currFee').value) || 0;
+      const minus = parseFloat(document.getElementById('discountPaid').value) || 0;
 
-function showReceipt(i){
- const s=students[i], due=s.total-s.paid;
- document.getElementById("receipt").innerHTML=`
- <h2>LUCENT COACHING CENTRE</h2>
- <p>Near Mithila Eye Hospital, Musrigharari</p>
- <h3>FEE PAYMENT RECEIPT</h3>
- <hr>
- <table>
- <tr><td><b>Student Name</b></td><td>${escapeHTML(s.name)}</td></tr>
- <tr><td><b>Roll No.</b></td><td>${escapeHTML(s.roll)}</td></tr>
- <tr><td><b>Class</b></td><td>${escapeHTML(s.cls)}</td></tr>
- <tr><td><b>Father's Name</b></td><td>${escapeHTML(s.father)}</td></tr>
- <tr><td><b>Total Fee</b></td><td>${money(s.total)}</td></tr>
- <tr><td><b>Paid Fee</b></td><td>${money(s.paid)}</td></tr>
- <tr><td><b>Due Fee</b></td><td>${money(due)}</td></tr>
- <tr><td><b>Payment Date</b></td><td>${s.date||"-"}</td></tr>
- <tr><td><b>Payment Mode</b></td><td>${escapeHTML(s.mode)}</td></tr>
- </table>
- <p style="margin-top:30px;text-align:right">Authorized Signature</p>`;
- document.getElementById("receiptModal").style.display="flex";
-}
-function closeReceipt(){document.getElementById("receiptModal").style.display="none"}
+      let netPayable = (prev + curr) - minus;
+      if (netPayable < 0) netPayable = 0;
 
-function escapeHTML(x){
- return String(x??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-}
+      document.getElementById('mathBreakdown').innerText = 
+        `गणना: ₹${prev} (बकाया) + ₹${curr} (चालू शुल्क) - ₹${minus} (छूट/जमा)`;
+      document.getElementById('totalPayableDisplay').innerText = `₹ ${netPayable}`;
 
-function render(){
- const q=val("search").toLowerCase();
- const tbody=document.getElementById("tbody");
- tbody.innerHTML="";
- let totalFee=0,totalPaid=0;
- students.forEach(s=>{totalFee+=Number(s.total);totalPaid+=Number(s.paid)});
- students.forEach((s,i)=>{
-  const text=(s.name+" "+s.roll+" "+s.cls+" "+s.father).toLowerCase();
-  if(q && !text.includes(q))return;
-  const due=Number(s.total)-Number(s.paid);
-  tbody.innerHTML+=`<tr>
-   <td>${i+1}</td><td><b>${escapeHTML(s.name)}</b></td><td>${escapeHTML(s.roll)}</td>
-   <td>${escapeHTML(s.cls)}</td><td>${escapeHTML(s.father)}</td>
-   <td>${money(s.total)}</td><td class="paid">${money(s.paid)}</td><td class="due">${money(due)}</td>
-   <td>${s.date||"-"}</td><td>${due<=0?'<span class="badge">PAID</span>':'<span class="badge badge-due">DUE</span>'}</td>
-   <td style="white-space:nowrap">
-    <button class="btn-success" onclick="showReceipt(${i})">🧾</button>
-    <button class="btn-warning" onclick="editStudent(${i})">✏️</button>
-    <button class="btn-danger" onclick="deleteStudent(${i})">🗑️</button>
-   </td>
-  </tr>`;
- });
- document.getElementById("totalStudents").innerText=students.length;
- document.getElementById("totalFee").innerText=money(totalFee);
- document.getElementById("totalPaid").innerText=money(totalPaid);
- document.getElementById("totalDue").innerText=money(totalFee-totalPaid);
-}
-render();
-</script>
+      const name = document.getElementById('studentName').value.trim() || "[विद्यार्थी का नाम]";
+      const sClass = document.getElementById('studentClass').value.trim() || "12th";
+      const month = document.getElementById('feeMonth').value;
+      const dueDate = getDueDate10DaysLater();
+
+      let discountLine = "";
+      if (minus > 0) {
+        discountLine = `▫️ दी गई छूट / जमा राशि: -₹${minus}\n`;
+      }
+
+      const message = 
+`*सादर प्रणाम (मासिक फीस सूचना)* 🙏
+*संस्थान:* LUCENT COACHING CENTRE MUSRIGHARARI
+
+माननीय अभिभावक, आपके बच्चे *${name}* (कक्षा: *${sClass}*) का मासिक शिक्षण शुल्क विवरण निम्नलिखित है:
+
+▫️ पिछला बकाया शुल्क: ₹${prev}
+▫️ चालू माह शुल्क (${month}): ₹${curr}
+${discountLine}--------------------------------
+*कुल देय राशि: ₹${netPayable}*
+--------------------------------
+
+💳 *ऑनलाइन भुगतान (PhonePe / UPI):*
+• नाम: *Md Mahfooz*
+• PhonePe नंबर: *8789524958*
+• UPI ID: *8789524958-2@ibl*
+*(ऑनलाइन भुगतान के बाद कृपया स्क्रीनशॉट इसी नंबर पर भेजें)*
+
+⚠️ *अनुरोध:* आपसे सविनय निवेदन है कि संस्थान के पठन-पाठन कार्य को सुचारू रूप से चलाने हेतु आगामी *10 दिनों के अंदर (दिनांक: ${dueDate} तक)* इस बकाया शुल्क को जमा कराने की कृपा करें।
+
+यदि आपने यह शुल्क पहले ही जमा कर दिया है, तो कृपया इस संदेश को अनदेखा करें।
+
+धन्यवाद,
+*LUCENT COACHING CENTRE MUSRIGHARARI*`;
+
+      document.getElementById('messagePreview').innerText = message;
+      return { message, netPayable };
+    }
+
+    function sendMessage(type) {
+      let rawPhone = document.getElementById('parentPhone').value.trim();
+      const name = document.getElementById('studentName').value.trim();
+
+      if (!name) {
+        alert("कृपया पहले छात्र का चयन करें!");
+        return;
+      }
+      if (!rawPhone) {
+        alert("कृपया अभिभावक का मोबाइल नंबर दर्ज करें!");
+        return;
+      }
+
+      let cleanPhone = rawPhone.replace(/[^0-9]/g, '');
+      const { message } = calculateTotal();
+
+      if (type === 'whatsapp') {
+        let waNumber = cleanPhone;
+        if (waNumber.length === 10) {
+          waNumber = '91' + waNumber;
+        }
+        const whatsappURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappURL, '_blank');
+      } else if (type === 'sms') {
+        const plainMsg = message.replace(/\*/g, '');
+        const smsURL = `sms:${cleanPhone}?body=${encodeURIComponent(plainMsg)}`;
+        window.location.href = smsURL;
+      }
+    }
+
+    window.onload = function() {
+      populateDropdown();
+      calculateTotal();
+    };
+  </script>
 </body>
 </html>
